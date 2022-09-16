@@ -166,22 +166,40 @@ expinfo.rect_center = [expinfo.center(1)-25 expinfo.center(2)-25 ...
 
 %% Positions for response Grids
 
-expinfo.centralResp1 = [5/16*expinfo.maxX 4/5*expinfo.maxY]; 
-expinfo.centralResp2 = [7/16*expinfo.maxX 4/5*expinfo.maxY];
-expinfo.centralResp3 = [9/16*expinfo.maxX 4/5*expinfo.maxY];   
-expinfo.centralResp4 = [11/16*expinfo.maxX 4/5*expinfo.maxY];
-expinfo.centralResp5 = [5/16*expinfo.maxX 3/5*expinfo.maxY];
-expinfo.centralResp6 = [7/16*expinfo.maxX 3/5*expinfo.maxY];
-expinfo.centralResp7 = [9/16*expinfo.maxX 3/5*expinfo.maxY];
-expinfo.centralResp8 = [11/16*expinfo.maxX 3/5*expinfo.maxY]; 
-expinfo.centralResp9 = [5/16*expinfo.maxX 2/5*expinfo.maxY]; 
-expinfo.centralResp10 = [7/16*expinfo.maxX 2/5*expinfo.maxY];
-expinfo.centralResp11 = [9/16*expinfo.maxX 2/5*expinfo.maxY]; 
-expinfo.centralResp12 = [11/16*expinfo.maxX 2/5*expinfo.maxY];
-expinfo.centralResp13 = [5/16*expinfo.maxX 1/5*expinfo.maxY];
-expinfo.centralResp14 = [7/16*expinfo.maxX 1/5*expinfo.maxY];
-expinfo.centralResp15 = [9/16*expinfo.maxX 1/5*expinfo.maxY];
-expinfo.centralResp16 = [11/16*expinfo.maxX 1/5*expinfo.maxY]; 
+%% Calculate Coordinates
+
+nCircles = 16; expinfo.GridSize; % how many equally spaced circles?
+MemoryRadius = expinfo.centerX/2; % radius, in Pixels
+
+% use polar coordinates to compute positions
+dAngle = 2*pi/nCircles; % change in angle per circle
+angles = (0:nCircles-1) * dAngle;
+[xPos, yPos] = pol2cart(angles, MemoryRadius); % convert back to Cartesian
+% translate to new center
+CoordsX = xPos + expinfo.centerX; 
+CoordsY= yPos + expinfo.centerY;
+
+Coords = vertcat(CoordsX,CoordsY);
+
+
+
+
+% expinfo.centralResp1 = [5/16*expinfo.maxX 4/5*expinfo.maxY]; 
+% expinfo.centralResp2 = [7/16*expinfo.maxX 4/5*expinfo.maxY];
+% expinfo.centralResp3 = [9/16*expinfo.maxX 4/5*expinfo.maxY];   
+% expinfo.centralResp4 = [11/16*expinfo.maxX 4/5*expinfo.maxY];
+% expinfo.centralResp5 = [5/16*expinfo.maxX 3/5*expinfo.maxY];
+% expinfo.centralResp6 = [7/16*expinfo.maxX 3/5*expinfo.maxY];
+% expinfo.centralResp7 = [9/16*expinfo.maxX 3/5*expinfo.maxY];
+% expinfo.centralResp8 = [11/16*expinfo.maxX 3/5*expinfo.maxY]; 
+% expinfo.centralResp9 = [5/16*expinfo.maxX 2/5*expinfo.maxY]; 
+% expinfo.centralResp10 = [7/16*expinfo.maxX 2/5*expinfo.maxY];
+% expinfo.centralResp11 = [9/16*expinfo.maxX 2/5*expinfo.maxY]; 
+% expinfo.centralResp12 = [11/16*expinfo.maxX 2/5*expinfo.maxY];
+% expinfo.centralResp13 = [5/16*expinfo.maxX 1/5*expinfo.maxY];
+% expinfo.centralResp14 = [7/16*expinfo.maxX 1/5*expinfo.maxY];
+% expinfo.centralResp15 = [9/16*expinfo.maxX 1/5*expinfo.maxY];
+% expinfo.centralResp16 = [11/16*expinfo.maxX 1/5*expinfo.maxY]; 
 
 
 
@@ -202,40 +220,86 @@ expinfo.centralResp16 = [11/16*expinfo.maxX 1/5*expinfo.maxY];
 %% Rect Coordinates for Circles (and Response fields)
 
 
-expinfo.Coord=[expinfo.centralResp1(1)-expinfo.circleframeX expinfo.centralResp1(2)-expinfo.circleframeY ...
-    expinfo.centralResp1(1)+expinfo.circleframeX expinfo.centralResp1(2)+expinfo.circleframeY;
-    expinfo.centralResp2(1)-expinfo.circleframeX expinfo.centralResp2(2)-expinfo.circleframeY ...
-    expinfo.centralResp2(1)+expinfo.circleframeX expinfo.centralResp2(2)+expinfo.circleframeY;
-    expinfo.centralResp3(1)-expinfo.circleframeX expinfo.centralResp3(2)-expinfo.circleframeY ...
-    expinfo.centralResp3(1)+expinfo.circleframeX expinfo.centralResp3(2)+expinfo.circleframeY;
-    expinfo.centralResp4(1)-expinfo.circleframeX expinfo.centralResp4(2)-expinfo.circleframeY ...
-    expinfo.centralResp4(1)+expinfo.circleframeX expinfo.centralResp4(2)+expinfo.circleframeY;
-    expinfo.centralResp5(1)-expinfo.circleframeX expinfo.centralResp5(2)-expinfo.circleframeY ...
-    expinfo.centralResp5(1)+expinfo.circleframeX expinfo.centralResp5(2)+expinfo.circleframeY;
-    expinfo.centralResp6(1)-expinfo.circleframeX expinfo.centralResp6(2)-expinfo.circleframeY ...
-    expinfo.centralResp6(1)+expinfo.circleframeX expinfo.centralResp6(2)+expinfo.circleframeY;
-    expinfo.centralResp7(1)-expinfo.circleframeX expinfo.centralResp7(2)-expinfo.circleframeY ...
-    expinfo.centralResp7(1)+expinfo.circleframeX expinfo.centralResp7(2)+expinfo.circleframeY;
-    expinfo.centralResp8(1)-expinfo.circleframeX expinfo.centralResp8(2)-expinfo.circleframeY ...
-    expinfo.centralResp8(1)+expinfo.circleframeX expinfo.centralResp8(2)+expinfo.circleframeY;
-    expinfo.centralResp9(1)-expinfo.circleframeX expinfo.centralResp9(2)-expinfo.circleframeY ...
-    expinfo.centralResp9(1)+expinfo.circleframeX expinfo.centralResp9(2)+expinfo.circleframeY;
-    expinfo.centralResp10(1)-expinfo.circleframeX expinfo.centralResp10(2)-expinfo.circleframeY ...
-    expinfo.centralResp10(1)+expinfo.circleframeX expinfo.centralResp10(2)+expinfo.circleframeY;
-    expinfo.centralResp11(1)-expinfo.circleframeX expinfo.centralResp11(2)-expinfo.circleframeY ...
-    expinfo.centralResp11(1)+expinfo.circleframeX expinfo.centralResp11(2)+expinfo.circleframeY;
-    expinfo.centralResp12(1)-expinfo.circleframeX expinfo.centralResp12(2)-expinfo.circleframeY ...
-    expinfo.centralResp12(1)+expinfo.circleframeX expinfo.centralResp12(2)+expinfo.circleframeY;
-    expinfo.centralResp13(1)-expinfo.circleframeX expinfo.centralResp13(2)-expinfo.circleframeY ...
-    expinfo.centralResp13(1)+expinfo.circleframeX expinfo.centralResp13(2)+expinfo.circleframeY;
-    expinfo.centralResp14(1)-expinfo.circleframeX expinfo.centralResp14(2)-expinfo.circleframeY ...
-    expinfo.centralResp14(1)+expinfo.circleframeX expinfo.centralResp14(2)+expinfo.circleframeY;
-    expinfo.centralResp15(1)-expinfo.circleframeX expinfo.centralResp15(2)-expinfo.circleframeY ...
-    expinfo.centralResp15(1)+expinfo.circleframeX expinfo.centralResp15(2)+expinfo.circleframeY;
-    expinfo.centralResp16(1)-expinfo.circleframeX expinfo.centralResp16(2)-expinfo.circleframeY ...
-    expinfo.centralResp16(1)+expinfo.circleframeX expinfo.centralResp16(2)+expinfo.circleframeY];
+% expinfo.Coord=[expinfo.centralResp1(1)-expinfo.circleframeX expinfo.centralResp1(2)-expinfo.circleframeY ...
+%     expinfo.centralResp1(1)+expinfo.circleframeX expinfo.centralResp1(2)+expinfo.circleframeY;
+%     expinfo.centralResp2(1)-expinfo.circleframeX expinfo.centralResp2(2)-expinfo.circleframeY ...
+%     expinfo.centralResp2(1)+expinfo.circleframeX expinfo.centralResp2(2)+expinfo.circleframeY;
+%     expinfo.centralResp3(1)-expinfo.circleframeX expinfo.centralResp3(2)-expinfo.circleframeY ...
+%     expinfo.centralResp3(1)+expinfo.circleframeX expinfo.centralResp3(2)+expinfo.circleframeY;
+%     expinfo.centralResp4(1)-expinfo.circleframeX expinfo.centralResp4(2)-expinfo.circleframeY ...
+%     expinfo.centralResp4(1)+expinfo.circleframeX expinfo.centralResp4(2)+expinfo.circleframeY;
+%     expinfo.centralResp5(1)-expinfo.circleframeX expinfo.centralResp5(2)-expinfo.circleframeY ...
+%     expinfo.centralResp5(1)+expinfo.circleframeX expinfo.centralResp5(2)+expinfo.circleframeY;
+%     expinfo.centralResp6(1)-expinfo.circleframeX expinfo.centralResp6(2)-expinfo.circleframeY ...
+%     expinfo.centralResp6(1)+expinfo.circleframeX expinfo.centralResp6(2)+expinfo.circleframeY;
+%     expinfo.centralResp7(1)-expinfo.circleframeX expinfo.centralResp7(2)-expinfo.circleframeY ...
+%     expinfo.centralResp7(1)+expinfo.circleframeX expinfo.centralResp7(2)+expinfo.circleframeY;
+%     expinfo.centralResp8(1)-expinfo.circleframeX expinfo.centralResp8(2)-expinfo.circleframeY ...
+%     expinfo.centralResp8(1)+expinfo.circleframeX expinfo.centralResp8(2)+expinfo.circleframeY;
+%     expinfo.centralResp9(1)-expinfo.circleframeX expinfo.centralResp9(2)-expinfo.circleframeY ...
+%     expinfo.centralResp9(1)+expinfo.circleframeX expinfo.centralResp9(2)+expinfo.circleframeY;
+%     expinfo.centralResp10(1)-expinfo.circleframeX expinfo.centralResp10(2)-expinfo.circleframeY ...
+%     expinfo.centralResp10(1)+expinfo.circleframeX expinfo.centralResp10(2)+expinfo.circleframeY;
+%     expinfo.centralResp11(1)-expinfo.circleframeX expinfo.centralResp11(2)-expinfo.circleframeY ...
+%     expinfo.centralResp11(1)+expinfo.circleframeX expinfo.centralResp11(2)+expinfo.circleframeY;
+%     expinfo.centralResp12(1)-expinfo.circleframeX expinfo.centralResp12(2)-expinfo.circleframeY ...
+%     expinfo.centralResp12(1)+expinfo.circleframeX expinfo.centralResp12(2)+expinfo.circleframeY;
+%     expinfo.centralResp13(1)-expinfo.circleframeX expinfo.centralResp13(2)-expinfo.circleframeY ...
+%     expinfo.centralResp13(1)+expinfo.circleframeX expinfo.centralResp13(2)+expinfo.circleframeY;
+%     expinfo.centralResp14(1)-expinfo.circleframeX expinfo.centralResp14(2)-expinfo.circleframeY ...
+%     expinfo.centralResp14(1)+expinfo.circleframeX expinfo.centralResp14(2)+expinfo.circleframeY;
+%     expinfo.centralResp15(1)-expinfo.circleframeX expinfo.centralResp15(2)-expinfo.circleframeY ...
+%     expinfo.centralResp15(1)+expinfo.circleframeX expinfo.centralResp15(2)+expinfo.circleframeY;
+%     expinfo.centralResp16(1)-expinfo.circleframeX expinfo.centralResp16(2)-expinfo.circleframeY ...
+%     expinfo.centralResp16(1)+expinfo.circleframeX expinfo.centralResp16(2)+expinfo.circleframeY];
 
+expinfo.Coord=[Coords(1,1)-expinfo.circleframeX Coords(2,1)-expinfo.circleframeY ...
+    Coords(2,1)+expinfo.circleframeX Coords(2,1)+expinfo.circleframeY;
 
+    Coords(1,2)-expinfo.circleframeX Coords(2,2)-expinfo.circleframeY ...
+    Coords(1,2)+expinfo.circleframeX Coords(2,2)+expinfo.circleframeY;
+
+    Coords(1,3)-expinfo.circleframeX Coords(2,3)-expinfo.circleframeY ...
+    Coords(1,3)+expinfo.circleframeX Coords(2,3)+expinfo.circleframeY;
+
+    Coords(1,4)-expinfo.circleframeX Coords(2,4)-expinfo.circleframeY ...
+    Coords(1,4)+expinfo.circleframeX Coords(2,4)+expinfo.circleframeY;
+
+    Coords(1,5)-expinfo.circleframeX Coords(2,5)-expinfo.circleframeY ...
+    Coords(1,5)+expinfo.circleframeX Coords(2,5)+expinfo.circleframeY;
+
+    Coords(1,6)-expinfo.circleframeX Coords(2,6)-expinfo.circleframeY ...
+    Coords(1,6)+expinfo.circleframeX Coords(2,6)+expinfo.circleframeY;
+
+    Coords(1,7)-expinfo.circleframeX Coords(2,7)-expinfo.circleframeY ...
+    Coords(1,7)+expinfo.circleframeX Coords(2,7)+expinfo.circleframeY;
+
+    Coords(1,8)-expinfo.circleframeX Coords(2,8)-expinfo.circleframeY ...
+    Coords(1,8)+expinfo.circleframeX Coords(2,8)+expinfo.circleframeY;
+
+    Coords(1,9)-expinfo.circleframeX Coords(2,9)-expinfo.circleframeY ...
+    Coords(1,9)+expinfo.circleframeX Coords(2,9)+expinfo.circleframeY;
+
+    Coords(1,10)-expinfo.circleframeX Coords(2,10)-expinfo.circleframeY ...
+    Coords(1,10)+expinfo.circleframeX Coords(2,10)+expinfo.circleframeY;
+
+    Coords(1,11)-expinfo.circleframeX Coords(2,11)-expinfo.circleframeY ...
+    Coords(1,11)+expinfo.circleframeX Coords(2,11)+expinfo.circleframeY;
+
+    Coords(1,12)-expinfo.circleframeX Coords(2,12)-expinfo.circleframeY ...
+    Coords(1,12)+expinfo.circleframeX Coords(2,12)+expinfo.circleframeY;
+
+    Coords(1,13)-expinfo.circleframeX Coords(2,13)-expinfo.circleframeY ...
+    Coords(1,13)+expinfo.circleframeX Coords(2,13)+expinfo.circleframeY;
+
+    Coords(1,14)-expinfo.circleframeX Coords(2,14)-expinfo.circleframeY ...
+    Coords(1,14)+expinfo.circleframeX Coords(2,14)+expinfo.circleframeY;
+
+    Coords(1,15)-expinfo.circleframeX Coords(2,15)-expinfo.circleframeY ...
+    Coords(1,15)+expinfo.circleframeX Coords(2,15)+expinfo.circleframeY;
+
+    Coords(1,16)-expinfo.circleframeX Coords(2,16)-expinfo.circleframeY ...
+    Coords(1,16)+expinfo.circleframeX Coords(2,16)+expinfo.circleframeY];
 
 
 
