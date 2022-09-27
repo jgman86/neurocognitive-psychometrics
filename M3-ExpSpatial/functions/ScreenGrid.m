@@ -28,9 +28,14 @@ for i = 1:expinfo.NPLs
 
 end
 
+%% Screen Fixation
+
+ Screen('FillOval', expinfo.window,expinfo.Colors.white,expinfo.rect_bull);
+ Screen('DrawLines', expinfo.window,expinfo.fix,10,expinfo.Colors.black,expinfo.center,0);
+ Screen('FillOval', expinfo.window,expinfo.Colors.white,expinfo.bullseye);
 
 
-% Flip stimuli to screen
+%% Flip stimuli to screen
 
         if ~exist('when','var') || isempty(when)
            % Flip expinfo.expinfo.window immediately
