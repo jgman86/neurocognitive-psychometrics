@@ -125,13 +125,17 @@ y_fix = [0 0; 50 -50];
 
 expinfo.fix = [x_fix y_fix];
 
+% Rect for Bullseye
+expinfo.rect_bull = [expinfo.center(1)-50 expinfo.center(2)-50 ...
+    expinfo.center(1)+50 expinfo.center(2)+50];
+
 % Bullseye Dimensions
 
 expinfo.bullseye = [expinfo.center(1)-5 expinfo.center(2)-5 ...
     expinfo.center(1)+5 expinfo.center(2)+5];
 
 
-% Cue Start and end Points 
+%% Cue Start and end Points 
 % Horizontal Cue
 x_horz = [100 -100; 0 0]; 
 y_horz = [0 0; 50 -50]; 
@@ -143,7 +147,7 @@ y_vert = [0 0; 100 -100];
 
 expinfo.cue_vert= [x_vert y_vert];
 
-% Cirlce Rects for Memory Array
+%% Cirlce Rects for Memory Array
 expinfo.rect_right = [expinfo.center_right(1)-expinfo.circleframeX expinfo.center_right(2)-expinfo.circleframeY ...
     expinfo.center_right(1)+expinfo.circleframeX expinfo.center_right(2)+expinfo.circleframeY];
 
@@ -166,10 +170,10 @@ expinfo.rect_center = [expinfo.center(1)-25 expinfo.center(2)-25 ...
 
 %% Positions for response Grids
 
-%% Calculate Coordinates
+% Calculate Coordinates
 
 nCircles = 16; expinfo.GridSize; % how many equally spaced circles?
-MemoryRadius = expinfo.centerX/2; % radius, in Pixels
+MemoryRadius = expinfo.centerX/4; % radius, in Pixels
 
 % use polar coordinates to compute positions
 dAngle = 2*pi/nCircles; % change in angle per circle
@@ -179,9 +183,10 @@ angles = (0:nCircles-1) * dAngle;
 CoordsX = xPos + expinfo.centerX; 
 CoordsY= yPos + expinfo.centerY;
 
-Coords = vertcat(CoordsX,CoordsY);
+Coords(:,1) = CoordsX;
+Coords(:,2) = CoordsY;
 
-
+reshape(Coords,[length(Coords),2])
 
 
 % expinfo.centralResp1 = [5/16*expinfo.maxX 4/5*expinfo.maxY]; 
@@ -253,53 +258,53 @@ Coords = vertcat(CoordsX,CoordsY);
 %     expinfo.centralResp16(1)-expinfo.circleframeX expinfo.centralResp16(2)-expinfo.circleframeY ...
 %     expinfo.centralResp16(1)+expinfo.circleframeX expinfo.centralResp16(2)+expinfo.circleframeY];
 
-expinfo.Coord=[Coords(1,1)-expinfo.circleframeX Coords(2,1)-expinfo.circleframeY ...
-    Coords(2,1)+expinfo.circleframeX Coords(2,1)+expinfo.circleframeY;
+expinfo.Coord=[Coords(1,1)-expinfo.circleframeX Coords(1,2)-expinfo.circleframeY ...
+    Coords(1,1)+expinfo.circleframeX Coords(1,2)+expinfo.circleframeY;
 
-    Coords(1,2)-expinfo.circleframeX Coords(2,2)-expinfo.circleframeY ...
-    Coords(1,2)+expinfo.circleframeX Coords(2,2)+expinfo.circleframeY;
+    Coords(2,1)-expinfo.circleframeX Coords(2,2)-expinfo.circleframeY ...
+    Coords(2,1)+expinfo.circleframeX Coords(2,2)+expinfo.circleframeY;
 
-    Coords(1,3)-expinfo.circleframeX Coords(2,3)-expinfo.circleframeY ...
-    Coords(1,3)+expinfo.circleframeX Coords(2,3)+expinfo.circleframeY;
+    Coords(3,1)-expinfo.circleframeX Coords(3,2)-expinfo.circleframeY ...
+    Coords(3,1)+expinfo.circleframeX Coords(3,2)+expinfo.circleframeY;
 
-    Coords(1,4)-expinfo.circleframeX Coords(2,4)-expinfo.circleframeY ...
-    Coords(1,4)+expinfo.circleframeX Coords(2,4)+expinfo.circleframeY;
+    Coords(4,1)-expinfo.circleframeX Coords(4,2)-expinfo.circleframeY ...
+    Coords(4,1)+expinfo.circleframeX Coords(4,2)+expinfo.circleframeY;
 
-    Coords(1,5)-expinfo.circleframeX Coords(2,5)-expinfo.circleframeY ...
-    Coords(1,5)+expinfo.circleframeX Coords(2,5)+expinfo.circleframeY;
+    Coords(5,1)-expinfo.circleframeX Coords(5,2)-expinfo.circleframeY ...
+    Coords(5,1)+expinfo.circleframeX Coords(5,2)+expinfo.circleframeY;
 
-    Coords(1,6)-expinfo.circleframeX Coords(2,6)-expinfo.circleframeY ...
-    Coords(1,6)+expinfo.circleframeX Coords(2,6)+expinfo.circleframeY;
+    Coords(6,1)-expinfo.circleframeX Coords(6,2)-expinfo.circleframeY ...
+    Coords(6,1)+expinfo.circleframeX Coords(6,2)+expinfo.circleframeY;
 
-    Coords(1,7)-expinfo.circleframeX Coords(2,7)-expinfo.circleframeY ...
-    Coords(1,7)+expinfo.circleframeX Coords(2,7)+expinfo.circleframeY;
+    Coords(7,1)-expinfo.circleframeX Coords(7,2)-expinfo.circleframeY ...
+    Coords(7,1)+expinfo.circleframeX Coords(7,2)+expinfo.circleframeY;
 
-    Coords(1,8)-expinfo.circleframeX Coords(2,8)-expinfo.circleframeY ...
-    Coords(1,8)+expinfo.circleframeX Coords(2,8)+expinfo.circleframeY;
+    Coords(8,1)-expinfo.circleframeX Coords(8,2)-expinfo.circleframeY ...
+    Coords(8,1)+expinfo.circleframeX Coords(8,2)+expinfo.circleframeY;
 
-    Coords(1,9)-expinfo.circleframeX Coords(2,9)-expinfo.circleframeY ...
-    Coords(1,9)+expinfo.circleframeX Coords(2,9)+expinfo.circleframeY;
+    Coords(9,1)-expinfo.circleframeX Coords(9,2)-expinfo.circleframeY ...
+    Coords(9,1)+expinfo.circleframeX Coords(9,2)+expinfo.circleframeY;
 
-    Coords(1,10)-expinfo.circleframeX Coords(2,10)-expinfo.circleframeY ...
-    Coords(1,10)+expinfo.circleframeX Coords(2,10)+expinfo.circleframeY;
+    Coords(10,1)-expinfo.circleframeX Coords(10,2)-expinfo.circleframeY ...
+    Coords(10,1)+expinfo.circleframeX Coords(10,2)+expinfo.circleframeY;
 
-    Coords(1,11)-expinfo.circleframeX Coords(2,11)-expinfo.circleframeY ...
-    Coords(1,11)+expinfo.circleframeX Coords(2,11)+expinfo.circleframeY;
+    Coords(11,1)-expinfo.circleframeX Coords(11,2)-expinfo.circleframeY ...
+    Coords(11,1)+expinfo.circleframeX Coords(11,2)+expinfo.circleframeY;
 
-    Coords(1,12)-expinfo.circleframeX Coords(2,12)-expinfo.circleframeY ...
-    Coords(1,12)+expinfo.circleframeX Coords(2,12)+expinfo.circleframeY;
+    Coords(12,1)-expinfo.circleframeX Coords(12,2)-expinfo.circleframeY ...
+    Coords(12,1)+expinfo.circleframeX Coords(12,2)+expinfo.circleframeY;
 
-    Coords(1,13)-expinfo.circleframeX Coords(2,13)-expinfo.circleframeY ...
-    Coords(1,13)+expinfo.circleframeX Coords(2,13)+expinfo.circleframeY;
+    Coords(13,1)-expinfo.circleframeX Coords(13,2)-expinfo.circleframeY ...
+    Coords(13,1)+expinfo.circleframeX Coords(13,2)+expinfo.circleframeY;
 
-    Coords(1,14)-expinfo.circleframeX Coords(2,14)-expinfo.circleframeY ...
-    Coords(1,14)+expinfo.circleframeX Coords(2,14)+expinfo.circleframeY;
+    Coords(14,1)-expinfo.circleframeX Coords(14,2)-expinfo.circleframeY ...
+    Coords(14,1)+expinfo.circleframeX Coords(14,2)+expinfo.circleframeY;
 
-    Coords(1,15)-expinfo.circleframeX Coords(2,15)-expinfo.circleframeY ...
-    Coords(1,15)+expinfo.circleframeX Coords(2,15)+expinfo.circleframeY;
+    Coords(15,1)-expinfo.circleframeX Coords(15,2)-expinfo.circleframeY ...
+    Coords(15,1)+expinfo.circleframeX Coords(15,2)+expinfo.circleframeY;
 
-    Coords(1,16)-expinfo.circleframeX Coords(2,16)-expinfo.circleframeY ...
-    Coords(1,16)+expinfo.circleframeX Coords(2,16)+expinfo.circleframeY];
+    Coords(16,1)-expinfo.circleframeX Coords(16,2)-expinfo.circleframeY ...
+    Coords(16,1)+expinfo.circleframeX Coords(16,2)+expinfo.circleframeY];
 
 
 
