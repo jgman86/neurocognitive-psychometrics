@@ -1,9 +1,9 @@
-% This function displays one trial of a Simon Task
+% This fun ction displays one trial of a Simon Task
 
 function Trial = DisplayTrial(expinfo, Trial, expTrial, isPractice)
 
 %% Start Trial Procedure and display all created trials in a loop!
-WaitSecs(2);
+ WaitSecs(2);
 
 %% Initialize Images and Positions
 
@@ -32,7 +32,13 @@ for Pos_MemSet = 1:expinfo.SetSize
         next_flip = getAccurateFlip(expinfo.window,Trial(expTrial).CueMemInt,expinfo.CueMemInt);
  
         [expinfo, next_flip] = Screen_MemArray(expinfo, Pos_MemSet,Trial,expTrial, next_flip);
-    
+
+        % Here now get response mouse for secondary task - which color is
+        % brighter
+
+        % Now screen an new fixation cross in addition to the grid for a
+        % given time to gain time for eeg measurement
+  
         % Screen Mask after MemArray
         [expinfo, next_flip] =  ScreenMask(Trial,expinfo,expTrial, next_flip);
 
@@ -40,7 +46,7 @@ for Pos_MemSet = 1:expinfo.SetSize
         Trial(expTrial).FT = clearScreen(expinfo.window,expinfo.Colors.bgColor, next_flip);
         next_flip = getAccurateFlip(expinfo.window,Trial(expTrial).FT,expinfo.FreeTime);
 
-     else
+    else % post-cue trials
            
        % Clear Screen for ISI
         
@@ -49,6 +55,12 @@ for Pos_MemSet = 1:expinfo.SetSize
 
         [expinfo, next_flip] = Screen_MemArray(expinfo, Pos_MemSet,Trial,expTrial,next_flip);
 
+        % Here now get response mouse for secondary task - which color is
+        % brighter
+
+        % Now screen an new fixation cross in addition to the grid for a
+        % given time to gain time for eeg measurement
+  
         % Cue-Array Interval
         Trial(expTrial).CueMemInt = clearScreen(expinfo.window,expinfo.Colors.bgColor, next_flip);
         next_flip = getAccurateFlip(expinfo.window,Trial(expTrial).CueMemInt,expinfo.CueMemInt);
