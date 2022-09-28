@@ -1,0 +1,52 @@
+library(paletter)
+library(here)
+library(colordistance)
+library(tidyverse)
+library(Polychrome)
+library(colorspace)
+
+path <- here()
+
+set.seed(666)
+
+# Create Color baseline Palette ----
+
+# no. of baseline colors in the palette
+n_color <- 5
+
+# applying the rainbow function
+baseline_colors <- rainbow(n_color)
+
+# prints the hex color codes
+baseline_colors
+
+# creates a pie chart of baseline colours
+pie(rep(1, n_color), col = baseline_colors, 
+    main = "Baseline Colors")
+
+
+# Create Colors and Check for Distinctiveness (> 40) and Luminance 
+
+
+stim_colors<-Polychrome::createPalette(25,range = c(45,75),seedcolors = baseline_colors, M = 100000,prefix = "SC_")
+luminance(stim_colors,main = "Luminance Distribution of Stims")
+Polychrome::computeDistances(stim_colors)
+plotDistances(stim_colors)
+
+# creates a pie chart colors
+pie(rep(1, 23), col = stim_colors_clean, 
+    main = "Stim Colors")
+
+stim_colors_clean <- stim_colors[-c(8,25)]
+
+
+
+# Convert to double RGB Values for Matlab
+
+stim_colors_rgb <- hex2RGB(stim_colors)
+
+stim_colors_rgb_clean <- stim_colors_rgb[-c(8,25)]
+
+# Save Values to File
+write.csv2(stim_colors_rgb_clean@coords, "stim_colors.csv")
+
