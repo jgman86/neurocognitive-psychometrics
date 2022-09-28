@@ -53,3 +53,13 @@ stim_colors_rgb_clean <- hex2RGB(stim_colors_clean)
 # Save Values to File
 write.csv2(stim_colors_rgb_clean@coords, "stim_colors.csv")
 
+# Classify Colors According to family
+
+color_class <- as.matrix(c("Red","Green","Green","Blue","Purple","Blue","Yellow","Purple",
+                           "Green","Red","Yellow",
+                           "Purple","Blue","Green","Red","Purple","Yellow",
+                           "Purple","Purple","Green","Blue"))
+
+colnames(color_class) <- c("class")
+
+
