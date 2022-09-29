@@ -62,4 +62,9 @@ color_class <- as.matrix(c("Red","Green","Green","Blue","Purple","Blue","Yellow"
 
 colnames(color_class) <- c("class")
 
+stim_colors <- as.data.frame(stim_colors_rgb_clean@coords)
+stim_colors<-cbind(stim_colors,color_class)
+stim_colors$class <- as.character(stim_colors$class)
+
+stim_colors %>% group_by(class) %>% count()
 
