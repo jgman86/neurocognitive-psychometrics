@@ -39,13 +39,35 @@ expinfo.Colors.red = [255 25 32];
 expinfo.Colors.MaskColor = [144 144 144];
 
 % Load Luminance and Distance controlled Stim Colors
+% opts = detectImportOptions('Stimuli/stim_colors_v3.csv');
+% varNames = opts.VariableNames;
+opts = delimitedTextImportOptions("NumVariables", 6);
 
-expinfo.StimColors = readmatrix('Stimuli/stim_colors.csv', ...
-    'NumHeaderLines', 1 ,'DecimalSeparator',',');
+% Specify range and delimiter
+opts.DataLines = [2, Inf];
+opts.Delimiter = ";";
 
+% Specify column names and types
+opts.VariableNames = ["Stim", "R", "G", "B", "brightness", "class"];
+opts.VariableTypes = ["string", "double", "double", "double", "double", "categorical"];
+
+% Specify file level properties
+opts.ExtraColumnsRule = "ignore";
+opts.EmptyLineRule = "read";
+
+% Specify variable properties
+
+opts = setvaropts(opts, ["R", "G", "B", "brightness"], "DecimalSeparator", ",");
+opts = setvaropts(opts, ["R", "G", "B", "brightness"], "ThousandsSeparator", ".");
+
+expinfo.StimColors = readtable('Stimuli/stim_colors_v3.csv',opts);
+               
 % Convert to RGB
-expinfo.StimColors = round(expinfo.StimColors(:,2:4) * 255);
-expinfo.ColorIndex = 1:length(expinfo.StimColors);
+expinfo.StimColors.R = round(expinfo.StimColors{:,2} * 255);
+expinfo.StimColors.G = round(expinfo.StimColors{:,3} * 255);
+expinfo.StimColors.B = round(expinfo.StimColors{:,4} * 255);
+
+
 
 %% Secify number of general instruction slides
 if expinfo.Cond == 0 ||  expinfo.Cond == 1
@@ -82,7 +104,7 @@ expinfo.SetSize = 4;
 expinfo.NPLs = expinfo.GridSize-expinfo.SetSize*2;
 expinfo.GridPositions = [1:16];
 
-expinfo.ColorIndex = 1:length(expinfo.StimColors);
+expinfo.ColorIndex = 1:height(expinfo.StimColors);
 expinfo.StimClass = [0 1];
 expinfo.PositionIndex = [1 2 3 4]; % horz-left horz-right vert-left vert-right
 
