@@ -2,7 +2,7 @@ function [expinfo, timestamp_flip] = ScreenFix(expinfo, when)
 
 
 
- Screen('FillOval', expinfo.window,expinfo.Colors.white,expinfo.rect_center);
+ Screen('FillOval', expinfo.window,expinfo.Colors.white,expinfo.rect_bull);
  Screen('DrawLines', expinfo.window,expinfo.fix,10,expinfo.Colors.black,expinfo.center,0);
  Screen('FillOval', expinfo.window,expinfo.Colors.white,expinfo.bullseye);
 
@@ -19,7 +19,7 @@ if ~exist('when','var') || isempty(when)
 else
     % Flip synced to timestamp entered
     Trial(expTrial).Cue_Time = Screen('Flip',expinfo.window,when);
-    timestamp_flip = getAccurateFlip(expinfo.window,Trial(expTrial).Cue_Time,expinfo.CueTime);
+    timestamp_flip = getAccurateFlip(expinfo.window,Trial(expTrial).time_fixation,expinfo.FixTime);
 end
 
 

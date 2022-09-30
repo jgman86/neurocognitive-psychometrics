@@ -68,9 +68,11 @@ expinfo.CueInt = 1;
 
 expinfo.FixTime = 0.500; % Time of Fixation Cross
 expinfo.MaskTime = 0.300;
-expinfo.ArrayTime = 0.300;
-expinfo.CueTime = 0.500;
+expinfo.ArrayTime = 1.500; %300 std.
+expinfo.ArrayTime_fix = 0.5;
+expinfo.CueTime = 0.800; % 500 std.
 expinfo.FeedbackDuration = 2;
+expinfo.MaxRTSec = 1.2;
 
 
 %% Experimental Manipulations
@@ -120,14 +122,14 @@ expinfo.center_buttom = [expinfo.center(1)  expinfo.center(2) - 300];
 
 % Fixation Cross Start and end Points
 % Fix Start and end Points 
-x_fix = [50 -50; 0 0]; 
-y_fix = [0 0; 50 -50]; 
+x_fix = [30 -30; 0 0]; 
+y_fix = [0 0; 30 -30]; 
 
 expinfo.fix = [x_fix y_fix];
 
 % Rect for Bullseye
-expinfo.rect_bull = [expinfo.center(1)-50 expinfo.center(2)-50 ...
-    expinfo.center(1)+50 expinfo.center(2)+50];
+expinfo.rect_bull = [expinfo.center(1)-30 expinfo.center(2)-30 ...
+    expinfo.center(1)+30 expinfo.center(2)+30];
 
 % Bullseye Dimensions
 
@@ -173,7 +175,7 @@ expinfo.rect_center = [expinfo.center(1)-25 expinfo.center(2)-25 ...
 % Calculate Coordinates
 
 nCircles = 16; expinfo.GridSize; % how many equally spaced circles?
-MemoryRadius = expinfo.centerX/4; % radius, in Pixels
+MemoryRadius = expinfo.centerX/3; % radius, in Pixels
 
 % use polar coordinates to compute positions
 dAngle = 2*pi/nCircles; % change in angle per circle

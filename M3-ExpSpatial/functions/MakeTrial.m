@@ -554,6 +554,13 @@ for trial = 1:expinfo.nExpTrials
 
     clear ColorIndexTrial
 
+    %% Secondary Testing Answer
+
+    bright = ["Mem","Dist"];
+
+    PreTrial(trial).BrightColor = randsample(bright,4,true);
+    PostTrial(trial).BrightColor = randsample(bright,4,true);
+
     %% Post Cue Trials
     % Sample Two Colors per position
 
