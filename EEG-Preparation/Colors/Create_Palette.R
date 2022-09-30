@@ -68,3 +68,24 @@ stim_colors$class <- as.character(stim_colors$class)
 
 stim_colors %>% group_by(class) %>% count()
 
+# Color Brightness
+
+
+bright <- function(df)
+{
+  
+  b <- sqrt(.241*df[,1]^2 + .69*df[,2]^2 + 0.68*df[,3]^2)
+  
+  return(b)
+  
+  
+}
+
+
+brightness <- bright(stim_colors)
+
+stim_colors <- cbind(stim_colors,brightness,color_class)
+
+
+write.csv2(stim_colors, "stim_colors_v3.csv")
+
