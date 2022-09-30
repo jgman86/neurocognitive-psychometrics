@@ -33,14 +33,25 @@ for Pos_MemSet = 1:expinfo.SetSize
  
         [expinfo, next_flip] = Screen_MemArray(expinfo, Pos_MemSet,Trial,expTrial, next_flip);
 
-        % Here now get response mouse for secondary task - which color is
-        % brighter
+        [Trial, givenAnswer_mouse_sec, response_mouse_sec] = getresponseMouse_secondary(expinfo, Trial, expTrial,Pos_MemSet);
+
+%     if isPractice == 1 % Show feedback in practice trials
+%         if Trial(expTrial).ACC_sec(Pos) == 1
+%             TextCenteredOnPos(expinfo.window,'RICHTIG',0.5*expinfo.maxX,0.5*expinfo.maxY,expinfo.Colors.green,next_flip);
+%         else
+%             TextCenteredOnPos(expinfo.window,'FALSCH',0.5*expinfo.maxX,0.5*expinfo.maxY,expinfo.Colors.red,next_flip);
+%         end
+%         WaitSecs(expinfo.FeedbackDuration);
+%     end
 
         % Now screen an new fixation cross in addition to the grid for a
         % given time to gain time for eeg measurement
-  
+        
+        [expinfo, next_flip] = Screen_MemArray_fix(expinfo, Pos_MemSet,Trial,expTrial,next_flip);
+
+ 
         % Screen Mask after MemArray
-        [expinfo, next_flip] =  ScreenMask(Trial,expinfo,expTrial, next_flip);
+        %[expinfo, next_flip] =  ScreenMask(Trial,expinfo,expTrial, next_flip);
 
         % Freetime fix for Pre Trials
         Trial(expTrial).FT = clearScreen(expinfo.window,expinfo.Colors.bgColor, next_flip);
@@ -55,8 +66,9 @@ for Pos_MemSet = 1:expinfo.SetSize
 
         [expinfo, next_flip] = Screen_MemArray(expinfo, Pos_MemSet,Trial,expTrial,next_flip);
 
-        % Here now get response mouse for secondary task - which color is
-        % brighter
+        [Trial, givenAnswer_mouse_sec, response_mouse_sec] = getresponseMouse_secondary(expinfo, Trial, expTrial,Pos_MemSet);
+        
+        [expinfo, next_flip] = Screen_MemArray_fix(expinfo, Pos_MemSet,Trial,expTrial,next_flip);
 
         % Now screen an new fixation cross in addition to the grid for a
         % given time to gain time for eeg measurement
@@ -68,7 +80,7 @@ for Pos_MemSet = 1:expinfo.SetSize
         [expinfo, next_flip] =  ScreenCues(Trial,expinfo,expTrial,Pos_MemSet,next_flip);
 
         % Screen Mask after MemArray
-        [expinfo, next_flip] =  ScreenMask(Trial,expinfo,expTrial, next_flip);
+        %[expinfo, next_flip] =  ScreenMask(Trial,expinfo,expTrial, next_flip);
 
         % Freetime fix for Pre Trials
         Trial(expTrial).FT = clearScreen(expinfo.window,expinfo.Colors.bgColor, next_flip);
