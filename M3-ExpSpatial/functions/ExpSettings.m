@@ -1,4 +1,4 @@
-    % This function loads all settings for the experiment
+    % Thb vis function loads all settings for the experiment
 
 function expinfo = ExpSettings(expinfo)
 %% Some general info about the experiment
@@ -144,14 +144,14 @@ expinfo.center_buttom = [expinfo.center(1)  expinfo.center(2) - 300];
 
 % Fixation Cross Start and end Points
 % Fix Start and end Points 
-x_fix = [30 -30; 0 0]; 
-y_fix = [0 0; 30 -30]; 
+x_fix = [35 -35; 0 0]; 
+y_fix = [0 0; 35 -35]; 
 
 expinfo.fix = [x_fix y_fix];
 
 % Rect for Bullseye
-expinfo.rect_bull = [expinfo.center(1)-30 expinfo.center(2)-30 ...
-    expinfo.center(1)+30 expinfo.center(2)+30];
+expinfo.rect_bull = [expinfo.center(1)-35 expinfo.center(2)-35 ...
+    expinfo.center(1)+35 expinfo.center(2)+35];
 
 % Bullseye Dimensions
 
@@ -209,8 +209,6 @@ CoordsY= yPos + expinfo.centerY;
 
 Coords(:,1) = CoordsX;
 Coords(:,2) = CoordsY;
-
-reshape(Coords,[length(Coords),2])
 
 
 % expinfo.centralResp1 = [5/16*expinfo.maxX 4/5*expinfo.maxY]; 
@@ -330,7 +328,10 @@ expinfo.Coord=[Coords(1,1)-expinfo.circleframeX Coords(1,2)-expinfo.circleframeY
     Coords(16,1)-expinfo.circleframeX Coords(16,2)-expinfo.circleframeY ...
     Coords(16,1)+expinfo.circleframeX Coords(16,2)+expinfo.circleframeY];
 
+%Check
 
+
+plot(CoordsX,CoordsY, 'o');
 
 %% Specify Instruction folder - conditional on operating system & language settings
 switch computer

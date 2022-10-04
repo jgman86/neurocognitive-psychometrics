@@ -1,4 +1,4 @@
-function [expinfo , timestamp_flip] = Screen_MemArray(expinfo,Set_Pos,Trial,expTrial,when)
+function [expinfo , timestamp_flip] = Screen_MemArray_fix(expinfo,Set_Pos,Trial,expTrial,when)
 
 
 % Screen Array
@@ -24,7 +24,7 @@ if ~exist('when','var') || isempty(when)
 
 else
     % Flip synced to timestamp entered
-    Trial(expTrial).ArrayTime_fix = Screen('Flip',expinfo.window,when);
+    Trial(expTrial).ArrayTime_fix = Screen('Flip',expinfo.window,when,1);
     timestamp_flip = getAccurateFlip(expinfo.window,Trial(expTrial).ArrayTime_fix,expinfo.ArrayTime_fix);
 end
 

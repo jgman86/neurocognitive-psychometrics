@@ -43,7 +43,7 @@ end
             
         else
             % Flip synced to timestamp entered
-            timestamp_flip = Screen('Flip', expinfo.window,when);
+            timestamp_flip = Screen('Flip', expinfo.window,when,1);
         end
     
         

@@ -48,8 +48,7 @@ for Pos_MemSet = 1:expinfo.SetSize
         % given time to gain time for eeg measurement
         
         [expinfo, next_flip] = Screen_MemArray_fix(expinfo, Pos_MemSet,Trial,expTrial,next_flip);
-
- 
+         
         % Screen Mask after MemArray
         %[expinfo, next_flip] =  ScreenMask(Trial,expinfo,expTrial, next_flip);
 
@@ -113,12 +112,14 @@ for Pos = 1:expinfo.SetSize
     [expinfo, next_flip] = ScreenGrid(expinfo, Trial, expTrial, next_flip);
 
     [Trial, givenAnswer_mouse, response_mouse] = getresponseMouse(expinfo, Trial, expTrial, Pos);
-  
+    
 
     if isPractice == 1 % Show feedback in practice trials
         if Trial(expTrial).ACC(Pos) == 1
+            clearScreen(expinfo.window,expinfo.Colors.bgColor);
             TextCenteredOnPos(expinfo.window,'RICHTIG',0.5*expinfo.maxX,0.5*expinfo.maxY,expinfo.Colors.green,next_flip);
         else
+            clearScreen(expinfo.window,expinfo.Colors.bgColor);
             TextCenteredOnPos(expinfo.window,'FALSCH',0.5*expinfo.maxX,0.5*expinfo.maxY,expinfo.Colors.red,next_flip);
         end
         WaitSecs(expinfo.FeedbackDuration);

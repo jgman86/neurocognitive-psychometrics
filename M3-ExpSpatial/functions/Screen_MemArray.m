@@ -19,7 +19,7 @@ if ~exist('when','var') || isempty(when)
 
 else
     % Flip synced to timestamp entered
-    Trial(expTrial).ArrayTime = Screen('Flip',expinfo.window,when);
+    Trial(expTrial).ArrayTime = Screen('Flip',expinfo.window,when,1);
     timestamp_flip = getAccurateFlip(expinfo.window,Trial(expTrial).ArrayTime,expinfo.ArrayTime);
 end
 

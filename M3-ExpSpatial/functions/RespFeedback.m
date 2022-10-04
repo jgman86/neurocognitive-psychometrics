@@ -25,10 +25,11 @@ end
 %Rechts oben nach rechts unten 
 
 if response==1
+    Screen('FrameRect', expinfo.window ,expinfo.Colors.black, expinfo.Coord(,1) [,penWidth]);
 
 if givenAnswer == 1
 %Box1
-Screen('DrawLine', expinfo.window ,expinfo.Colors.black , expinfo.RangeRespGrid1(1), expinfo.RangeRespGrid1(2), expinfo.RangeRespGrid1(3), expinfo.RangeRespGrid1(2) ,3);
+Screen('Rect', expinfo.window ,expinfo.Colors.black , expinfo.RangeRespGrid1(1), expinfo.RangeRespGrid1(2), expinfo.RangeRespGrid1(3), expinfo.RangeRespGrid1(2) ,3);
 Screen('DrawLine', expinfo.window ,expinfo.Colors.black , expinfo.RangeRespGrid1(1), expinfo.RangeRespGrid1(4), expinfo.RangeRespGrid1(3), expinfo.RangeRespGrid1(4) ,3);
 Screen('DrawLine', expinfo.window ,expinfo.Colors.black , expinfo.RangeRespGrid1(1), expinfo.RangeRespGrid1(2), expinfo.RangeRespGrid1(1), expinfo.RangeRespGrid1(4) ,3);
 Screen('DrawLine', expinfo.window ,expinfo.Colors.black , expinfo.RangeRespGrid1(3),  expinfo.RangeRespGrid1(2),expinfo.RangeRespGrid1(3), expinfo.RangeRespGrid1(4) ,3);

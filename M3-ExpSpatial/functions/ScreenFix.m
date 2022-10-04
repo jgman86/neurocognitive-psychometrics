@@ -18,7 +18,7 @@ if ~exist('when','var') || isempty(when)
 
 else
     % Flip synced to timestamp entered
-    Trial(expTrial).Cue_Time = Screen('Flip',expinfo.window,when);
+    Trial(expTrial).Cue_Time = Screen('Flip',expinfo.window,when,1);
     timestamp_flip = getAccurateFlip(expinfo.window,Trial(expTrial).time_fixation,expinfo.FixTime);
 end
 
