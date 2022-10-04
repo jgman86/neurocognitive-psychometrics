@@ -556,10 +556,20 @@ for trial = 1:expinfo.nExpTrials
 
     %% Secondary Testing Answer
 
-    bright = ["Mem","Dist"];
 
-    PreTrial(trial).BrightColor = randsample(bright,4,true);
-    PostTrial(trial).BrightColor = randsample(bright,4,true);
+    for i = 1:expinfo.SetSize
+
+        if PreTrial(trial).MemColors{i,4} > PreTrial(trial).DistColors{i,4}
+            
+            PreTrial(trial).BrightColor(i) = "Mem";
+
+        elseif  PreTrial(trial).MemColors{i,4} < PreTrial(trial).DistColors{i,4}
+            
+            PreTrial(trial).BrightColor(i) = "Dist";
+
+        end
+    end
+
 
     %% Post Cue Trials
     % Sample Two Colors per position

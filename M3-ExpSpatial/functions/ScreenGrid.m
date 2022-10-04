@@ -14,8 +14,8 @@ end
 for i = 1:expinfo.SetSize
 
     
-   Screen('FillOval', expinfo.window,Trial(expTrial).MemColors(i,:),Trial(expTrial).IIPGridCoord(i,:))
-   Screen('FillOval', expinfo.window,Trial(expTrial).DistColors(i,:),Trial(expTrial).DIPGridCoord(i,:))
+   Screen('FillOval', expinfo.window,Trial(expTrial).MemColors{i,1:3},Trial(expTrial).IIPGridCoord(i,:))
+   Screen('FillOval', expinfo.window,Trial(expTrial).DistColors{i,1:3},Trial(expTrial).DIPGridCoord(i,:))
 
   
 end
@@ -24,7 +24,7 @@ end
 %% Screen NPLs
 for i = 1:expinfo.NPLs
 
-    Screen('FillOval', expinfo.window,Trial(expTrial).NPLColors(i,:),Trial(expTrial).NPLGridCoord(i,:))
+    Screen('FillOval', expinfo.window,Trial(expTrial).NPLColors{i,1:3},Trial(expTrial).NPLGridCoord(i,:))
 
 end
 

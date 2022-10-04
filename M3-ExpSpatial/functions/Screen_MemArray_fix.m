@@ -2,8 +2,8 @@ function [expinfo , timestamp_flip] = Screen_MemArray(expinfo,Set_Pos,Trial,expT
 
 
 % Screen Array
-Screen('FillOval', expinfo.window, Trial(expTrial).MemColors(Set_Pos,:),Trial(expTrial).MemCoordArray(Set_Pos,:));
-Screen('FillOval', expinfo.window, Trial(expTrial).DistColors(Set_Pos,:),Trial(expTrial).DistCoordArray(Set_Pos,:));
+Screen('FillOval', expinfo.window, Trial(expTrial).MemColors{Set_Pos,1:3},Trial(expTrial).MemCoordArray(Set_Pos,:));
+Screen('FillOval', expinfo.window, Trial(expTrial).DistColors{Set_Pos,1:3},Trial(expTrial).DistCoordArray(Set_Pos,:));
 Screen('FillOval', expinfo.window, expinfo.Colors.MaskColor,Trial(expTrial).MaskCoordArray{Set_Pos,1});
 Screen('FillOval', expinfo.window,expinfo.Colors.MaskColor,Trial(expTrial).MaskCoordArray{Set_Pos,2});
 
