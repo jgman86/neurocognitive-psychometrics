@@ -1,4 +1,4 @@
-%% M3-Spatial Cueing Task
+%% M3-Sp atial Cueing Task
 
 clearvars; % Start the experiment with empty workspace
 clc; % Clear command window

@@ -328,10 +328,6 @@ expinfo.Coord=[Coords(1,1)-expinfo.circleframeX Coords(1,2)-expinfo.circleframeY
     Coords(16,1)-expinfo.circleframeX Coords(16,2)-expinfo.circleframeY ...
     Coords(16,1)+expinfo.circleframeX Coords(16,2)+expinfo.circleframeY];
 
-%Check
-
-
-plot(CoordsX,CoordsY, 'o');
 
 %% Specify Instruction folder - conditional on operating system & language settings
 switch computer
