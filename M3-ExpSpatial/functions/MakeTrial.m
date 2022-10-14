@@ -554,7 +554,7 @@ for trial = 1:expinfo.nExpTrials
 
     clear ColorIndexTrial
 
-    %% Secondary Testing Answer
+    %% Secondary Testing Answer Pre Trial
 
 
     for i = 1:expinfo.SetSize
@@ -647,6 +647,22 @@ for trial = 1:expinfo.nExpTrials
 
 
    clear ColorIndexTrial_Post
+
+     %% Secondary Testing Answer Post Trial
+
+
+    for i = 1:expinfo.SetSize
+
+        if PostTrial(trial).MemColors{i,4} > PostTrial(trial).DistColors{i,4}
+            
+            PostTrial(trial).BrightColor(i) = "Mem";
+
+        elseif  PostTrial(trial).MemColors{i,4} < PostTrial(trial).DistColors{i,4}
+            
+            PostTrial(trial).BrightColor(i) = "Dist";
+
+        end
+    end
 
     %% Assign Grid Coordinates
 

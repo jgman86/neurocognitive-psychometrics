@@ -37,19 +37,19 @@ if  RespButton(1) == 1 && response_mouse_sec == 1 % Wenn eine erlaubte Taste ged
     
     if  answerX >= Trial(expTrial).MemCoordArray(Pos,1) && answerY >= Trial(expTrial).MemCoordArray(Pos,2) && answerX <= Trial(expTrial).MemCoordArray(Pos,3)&& answerY <= Trial(expTrial).MemCoordArray(Pos,4)
         givenAnswer_mouse_sec = "Mem";
-
-        Screen('FrameRect', expinfo.window ,expinfo.Colors.red, [Trial(expTrial).MemCoordArray(Pos,1) ...
-            Trial(expTrial).MemCoordArray(Pos,2) Trial(expTrial).MemCoordArray(Pos,3) Trial(expTrial).MemCoordArray(Pos,4)]);
-        Screen('Flip',expinfo.window,0,1);
-        WaitSecs(0.5);
+% 
+%         Screen('FrameRect', expinfo.window ,expinfo.Colors.red, [Trial(expTrial).MemCoordArray(Pos,1) ...
+%             Trial(expTrial).MemCoordArray(Pos,2) Trial(expTrial).MemCoordArray(Pos,3) Trial(expTrial).MemCoordArray(Pos,4)]);
+%         Screen('Flip',expinfo.window,0,1);
+%         WaitSecs(0.5);
 
     elseif answerX >= Trial(expTrial).DistCoordArray(Pos,1) && answerY >= Trial(expTrial).DistCoordArray(Pos,2) && answerX <= Trial(expTrial).DistCoordArray(Pos,3)&& answerY <= Trial(expTrial).DistCoordArray(Pos,4)
         givenAnswer_mouse_sec = "Dist";
         
-         Screen('FrameRect', expinfo.window ,expinfo.Colors.red, [Trial(expTrial).DistCoordArray(Pos,1) ...
-            Trial(expTrial).DistCoordArray(Pos,2) Trial(expTrial).DistCoordArray(Pos,3) Trial(expTrial).DistCoordArray(Pos,4)]);
-        Screen('Flip',expinfo.window,0,1);
-        WaitSecs(0.5);
+%          Screen('FrameRect', expinfo.window ,expinfo.Colors.red, [Trial(expTrial).DistCoordArray(Pos,1) ...
+%             Trial(expTrial).DistCoordArray(Pos,2) Trial(expTrial).DistCoordArray(Pos,3) Trial(expTrial).DistCoordArray(Pos,4)]);
+%         Screen('Flip',expinfo.window,0,1);
+%         WaitSecs(0.5);
     end
     
     %% Track Answer Correct Answer for Secondary Task 

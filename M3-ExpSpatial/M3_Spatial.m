@@ -1,4 +1,4 @@
-%% M3-Sp atial Cueing Task
+%% M3-Spatial Cueing Task
 
 clearvars; % Start the experiment with empty workspace
 clc; % Clear command window
@@ -29,7 +29,7 @@ rng(expinfo.mySeed);
 % Unify key names and color range
 PsychDefaultSetup(2);
 Screen('Preference','TextRenderer', 0);
-Screen('Preference','DefaultFontSize', 100);
+Screen('Preference','DefaultFontSize', 50);
 % Open PTB window, and save some general information in the expinfo Object
 expinfo = startPTB(expinfo); 
 

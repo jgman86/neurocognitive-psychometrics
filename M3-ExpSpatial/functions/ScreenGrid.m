@@ -30,9 +30,9 @@ end
 
 %% Screen Fixation
 
- Screen('FillOval', expinfo.window,expinfo.Colors.white,expinfo.rect_bull);
- Screen('DrawLines', expinfo.window,expinfo.fix,10,expinfo.Colors.black,expinfo.center,0);
- Screen('FillOval', expinfo.window,expinfo.Colors.white,expinfo.bullseye);
+Screen('FillOval', expinfo.window,expinfo.Colors.black,expinfo.rect_bull);
+Screen('DrawLines', expinfo.window,expinfo.fix,10,expinfo.Colors.white,expinfo.center,0);
+Screen('FillOval', expinfo.window,expinfo.Colors.black,expinfo.bullseye);
 
 
 %% Flip stimuli to screen

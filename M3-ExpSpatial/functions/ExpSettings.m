@@ -16,7 +16,7 @@ expinfo.Time = cellstr(expinfo.DateTime);
 expinfo.Time = expinfo.Time{1};
 
 %% Specify Stimulus and Text properties (Size Position etc.)
-expinfo.stimulussize = 80; % in Pixel bzw. Point
+expinfo.stimulussize = 20; % in Pixel bzw. Point
 expinfo.BoxSize = [0 0 0.05*expinfo.maxX 0.05*expinfo.maxY]; % Box-size with 5% of screen size
 expinfo.RespWindow = 1:16;
 
@@ -99,10 +99,10 @@ expinfo.MaxRTSec = 1.2;
 
 %% Experimental Manipulations
 
-expinfo.GridSize =16;
-expinfo.SetSize = 4;
+expinfo.GridSize =20;
+expinfo.SetSize = 5;
 expinfo.NPLs = expinfo.GridSize-expinfo.SetSize*2;
-expinfo.GridPositions = [1:16];
+expinfo.GridPositions = [1:expinfo.GridSize];
 
 expinfo.ColorIndex = 1:height(expinfo.StimColors);
 expinfo.StimClass = [0 1];
@@ -196,7 +196,7 @@ expinfo.rect_center = [expinfo.center(1)-25 expinfo.center(2)-25 ...
 
 % Calculate Coordinates
 
-nCircles = 16; expinfo.GridSize; % how many equally spaced circles?
+nCircles = expinfo.GridSize;  % how many equally spaced circles?
 MemoryRadius = expinfo.centerX/3; % radius, in Pixels
 
 % use polar coordinates to compute positions
@@ -280,53 +280,60 @@ Coords(:,2) = CoordsY;
 %     expinfo.centralResp16(1)-expinfo.circleframeX expinfo.centralResp16(2)-expinfo.circleframeY ...
 %     expinfo.centralResp16(1)+expinfo.circleframeX expinfo.centralResp16(2)+expinfo.circleframeY];
 
-expinfo.Coord=[Coords(1,1)-expinfo.circleframeX Coords(1,2)-expinfo.circleframeY ...
-    Coords(1,1)+expinfo.circleframeX Coords(1,2)+expinfo.circleframeY;
 
-    Coords(2,1)-expinfo.circleframeX Coords(2,2)-expinfo.circleframeY ...
-    Coords(2,1)+expinfo.circleframeX Coords(2,2)+expinfo.circleframeY;
+for i = 1:expinfo.GridSize
 
-    Coords(3,1)-expinfo.circleframeX Coords(3,2)-expinfo.circleframeY ...
-    Coords(3,1)+expinfo.circleframeX Coords(3,2)+expinfo.circleframeY;
+    expinfo.Coord(i,:)=[Coords(i,1)-expinfo.circleframeX Coords(i,2)-expinfo.circleframeY ...
+    Coords(i,1)+expinfo.circleframeX Coords(i,2)+expinfo.circleframeY];
+end 
 
-    Coords(4,1)-expinfo.circleframeX Coords(4,2)-expinfo.circleframeY ...
-    Coords(4,1)+expinfo.circleframeX Coords(4,2)+expinfo.circleframeY;
-
-    Coords(5,1)-expinfo.circleframeX Coords(5,2)-expinfo.circleframeY ...
-    Coords(5,1)+expinfo.circleframeX Coords(5,2)+expinfo.circleframeY;
-
-    Coords(6,1)-expinfo.circleframeX Coords(6,2)-expinfo.circleframeY ...
-    Coords(6,1)+expinfo.circleframeX Coords(6,2)+expinfo.circleframeY;
-
-    Coords(7,1)-expinfo.circleframeX Coords(7,2)-expinfo.circleframeY ...
-    Coords(7,1)+expinfo.circleframeX Coords(7,2)+expinfo.circleframeY;
-
-    Coords(8,1)-expinfo.circleframeX Coords(8,2)-expinfo.circleframeY ...
-    Coords(8,1)+expinfo.circleframeX Coords(8,2)+expinfo.circleframeY;
-
-    Coords(9,1)-expinfo.circleframeX Coords(9,2)-expinfo.circleframeY ...
-    Coords(9,1)+expinfo.circleframeX Coords(9,2)+expinfo.circleframeY;
-
-    Coords(10,1)-expinfo.circleframeX Coords(10,2)-expinfo.circleframeY ...
-    Coords(10,1)+expinfo.circleframeX Coords(10,2)+expinfo.circleframeY;
-
-    Coords(11,1)-expinfo.circleframeX Coords(11,2)-expinfo.circleframeY ...
-    Coords(11,1)+expinfo.circleframeX Coords(11,2)+expinfo.circleframeY;
-
-    Coords(12,1)-expinfo.circleframeX Coords(12,2)-expinfo.circleframeY ...
-    Coords(12,1)+expinfo.circleframeX Coords(12,2)+expinfo.circleframeY;
-
-    Coords(13,1)-expinfo.circleframeX Coords(13,2)-expinfo.circleframeY ...
-    Coords(13,1)+expinfo.circleframeX Coords(13,2)+expinfo.circleframeY;
-
-    Coords(14,1)-expinfo.circleframeX Coords(14,2)-expinfo.circleframeY ...
-    Coords(14,1)+expinfo.circleframeX Coords(14,2)+expinfo.circleframeY;
-
-    Coords(15,1)-expinfo.circleframeX Coords(15,2)-expinfo.circleframeY ...
-    Coords(15,1)+expinfo.circleframeX Coords(15,2)+expinfo.circleframeY;
-
-    Coords(16,1)-expinfo.circleframeX Coords(16,2)-expinfo.circleframeY ...
-    Coords(16,1)+expinfo.circleframeX Coords(16,2)+expinfo.circleframeY];
+% expinfo.Coord=[Coords(1,1)-expinfo.circleframeX Coords(1,2)-expinfo.circleframeY ...
+%     Coords(1,1)+expinfo.circleframeX Coords(1,2)+expinfo.circleframeY;
+% 
+%     Coords(2,1)-expinfo.circleframeX Coords(2,2)-expinfo.circleframeY ...
+%     Coords(2,1)+expinfo.circleframeX Coords(2,2)+expinfo.circleframeY;
+% 
+%     Coords(3,1)-expinfo.circleframeX Coords(3,2)-expinfo.circleframeY ...
+%     Coords(3,1)+expinfo.circleframeX Coords(3,2)+expinfo.circleframeY;
+% 
+%     Coords(4,1)-expinfo.circleframeX Coords(4,2)-expinfo.circleframeY ...
+%     Coords(4,1)+expinfo.circleframeX Coords(4,2)+expinfo.circleframeY;
+% 
+%     Coords(5,1)-expinfo.circleframeX Coords(5,2)-expinfo.circleframeY ...
+%     Coords(5,1)+expinfo.circleframeX Coords(5,2)+expinfo.circleframeY;
+% 
+%     Coords(6,1)-expinfo.circleframeX Coords(6,2)-expinfo.circleframeY ...
+%     Coords(6,1)+expinfo.circleframeX Coords(6,2)+expinfo.circleframeY;
+% 
+%     Coords(7,1)-expinfo.circleframeX Coords(7,2)-expinfo.circleframeY ...
+%     Coords(7,1)+expinfo.circleframeX Coords(7,2)+expinfo.circleframeY;
+% 
+%     Coords(8,1)-expinfo.circleframeX Coords(8,2)-expinfo.circleframeY ...
+%     Coords(8,1)+expinfo.circleframeX Coords(8,2)+expinfo.circleframeY;
+% 
+%     Coords(9,1)-expinfo.circleframeX Coords(9,2)-expinfo.circleframeY ...
+%     Coords(9,1)+expinfo.circleframeX Coords(9,2)+expinfo.circleframeY;
+% 
+%     Coords(10,1)-expinfo.circleframeX Coords(10,2)-expinfo.circleframeY ...
+%     Coords(10,1)+expinfo.circleframeX Coords(10,2)+expinfo.circleframeY;
+% 
+%     Coords(11,1)-expinfo.circleframeX Coords(11,2)-expinfo.circleframeY ...
+%     Coords(11,1)+expinfo.circleframeX Coords(11,2)+expinfo.circleframeY;
+% 
+%     Coords(12,1)-expinfo.circleframeX Coords(12,2)-expinfo.circleframeY ...
+%     Coords(12,1)+expinfo.circleframeX Coords(12,2)+expinfo.circleframeY;
+% 
+%     Coords(13,1)-expinfo.circleframeX Coords(13,2)-expinfo.circleframeY ...
+%     Coords(13,1)+expinfo.circleframeX Coords(13,2)+expinfo.circleframeY;
+% 
+%     Coords(14,1)-expinfo.circleframeX Coords(14,2)-expinfo.circleframeY ...
+%     Coords(14,1)+expinfo.circleframeX Coords(14,2)+expinfo.circleframeY;
+% 
+%     Coords(15,1)-expinfo.circleframeX Coords(15,2)-expinfo.circleframeY ...
+%     Coords(15,1)+expinfo.circleframeX Coords(15,2)+expinfo.circleframeY;
+% 
+%     Coords(16,1)-expinfo.circleframeX Coords(16,2)-expinfo.circleframeY ...
+%     Coords(16,1)+expinfo.circleframeX Coords(16,2)+expinfo.circleframeY];
 
 
 %% Specify Instruction folder - conditional on operating system & language settings
