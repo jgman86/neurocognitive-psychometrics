@@ -41,15 +41,15 @@ expinfo.Colors.MaskColor = [144 144 144];
 % Load Luminance and Distance controlled Stim Colors
 % opts = detectImportOptions('Stimuli/stim_colors_v3.csv');
 % varNames = opts.VariableNames;
-opts = delimitedTextImportOptions("NumVariables", 6);
+opts = delimitedTextImportOptions("NumVariables", 5);
 
 % Specify range and delimiter
 opts.DataLines = [2, Inf];
 opts.Delimiter = ";";
 
 % Specify column names and types
-opts.VariableNames = ["Stim", "R", "G", "B", "brightness", "class"];
-opts.VariableTypes = ["string", "double", "double", "double", "double", "categorical"];
+opts.VariableNames = ["R", "G", "B", "brightness", "class"];
+opts.VariableTypes = ["double", "double", "double", "double", "categorical"];
 
 % Specify file level properties
 opts.ExtraColumnsRule = "ignore";
@@ -60,12 +60,12 @@ opts.EmptyLineRule = "read";
 opts = setvaropts(opts, ["R", "G", "B", "brightness"], "DecimalSeparator", ",");
 opts = setvaropts(opts, ["R", "G", "B", "brightness"], "ThousandsSeparator", ".");
 
-expinfo.StimColors = readtable('Stimuli/stim_colors_v3.csv',opts);
+expinfo.StimColors = readtable('Stimuli/stim_colors_final.csv',opts);
                
 % Convert to RGB
-expinfo.StimColors.R = round(expinfo.StimColors{:,2} * 255);
-expinfo.StimColors.G = round(expinfo.StimColors{:,3} * 255);
-expinfo.StimColors.B = round(expinfo.StimColors{:,4} * 255);
+expinfo.StimColors.R = round(expinfo.StimColors{:,1} * 255);
+expinfo.StimColors.G = round(expinfo.StimColors{:,2} * 255);
+expinfo.StimColors.B = round(expinfo.StimColors{:,3} * 255);
 
 
 

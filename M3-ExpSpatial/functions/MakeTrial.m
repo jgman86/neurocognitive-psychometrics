@@ -486,7 +486,7 @@ for trial = 1:expinfo.nExpTrials
     % Sample Color Space for individual Trial
 
     ColorSpaceIndex = randsample(expinfo.ColorIndex,expinfo.GridSize);
-    ColorSpaceTrial = expinfo.StimColors(ColorSpaceIndex,2:5);
+    ColorSpaceTrial = expinfo.StimColors(ColorSpaceIndex,1:4);
 
     PreTrial(trial).ColorSpaceTrial = ColorSpaceTrial;
 
@@ -577,7 +577,7 @@ for trial = 1:expinfo.nExpTrials
     % Sample Color Space for individual Trial
 
     ColorSpaceIndex_Post = randsample(expinfo.ColorIndex,expinfo.GridSize,false);
-    ColorSpaceTrial_Post = expinfo.StimColors(ColorSpaceIndex_Post,2:5);
+    ColorSpaceTrial_Post = expinfo.StimColors(ColorSpaceIndex_Post,1:4);
 
     ColorIndexTrial_Post = 1:expinfo.GridSize;
 
