@@ -54,7 +54,7 @@ Priority(topPriorityLevel);
 % finished you cannot move back.
 
 InstSlide = 1; % Start with the first slide
-while InstSlide <= 7 % Loop until last slide of general instruction
+while InstSlide <= 8 % Loop until last slide of general instruction
     % Paste the FileName for the Instrcution Slide depending on the current
     % slide to be displayed
     Instruction=[expinfo.InstFolder 'Folie' num2str(InstSlide) expinfo.InstExtension];
@@ -186,13 +186,19 @@ end
 % This ensures that all information used within the experiment can be
 % accsessed later
 
-if expinfo.Cond == 0
-    if expinfo.doPractice == 1
-        
+if expinfo.Cond == 0 && expinfo.doPractice == 1
+           
         BackUp_PrePracTrials = [expinfo.DataFolder,expinfo.TaskName,'_PrePracTrials_S',num2str(expinfo.subject),'_Ses',num2str(expinfo.session)];
         save(BackUp_PrePracTrials,'PrePracTrials');
+
+        BackUp_PreExpTrials = [expinfo.DataFolder,expinfo.TaskName,'PreExp_Trials_S',num2str(expinfo.subject),'_Ses',num2str(expinfo.session)];
+        BackUp_ExpInfo   = [expinfo.DataFolder,expinfo.TaskName,'_ExpInfo_S',num2str(expinfo.subject),'_Ses',num2str(expinfo.session)];
         
-    else
+        save(BackUp_ExpInfo,'expinfo');
+        save(BackUp_PreExpTrials,'PreExpTrials');
+
+        
+elseif expinfo.Cond == 0 && expinfo.doPractice == 0
         
         BackUp_PreExpTrials = [expinfo.DataFolder,expinfo.TaskName,'PreExp_Trials_S',num2str(expinfo.subject),'_Ses',num2str(expinfo.session)];
         BackUp_ExpInfo   = [expinfo.DataFolder,expinfo.TaskName,'_ExpInfo_S',num2str(expinfo.subject),'_Ses',num2str(expinfo.session)];
@@ -200,16 +206,21 @@ if expinfo.Cond == 0
         save(BackUp_ExpInfo,'expinfo');
         save(BackUp_PreExpTrials,'PreExpTrials');
         
-    end
+end 
+
+if expinfo.Cond == 1 && expinfo.doPractice == 1
     
-elseif expinfo.Cond == 1
-    
-    if expinfo.doPractice == 0
         
         BackUp_PostPracTrials = [expinfo.DataFolder,expinfo.TaskName,'_PostPracTrials_S',num2str(expinfo.subject),'_Ses',num2str(expinfo.session)];
         save(BackUp_PostPracTrials,'PostPracTrials');
+
+        BackUp_PostExpTrials = [expinfo.DataFolder,expinfo.TaskName,'PostExp_Trials_S',num2str(expinfo.subject),'_Ses',num2str(expinfo.session)];
+        BackUp_ExpInfo   = [expinfo.DataFolder,expinfo.TaskName,'_ExpInfo_S',num2str(expinfo.subject),'_Ses',num2str(expinfo.session)];
         
-    else
+        save(BackUp_ExpInfo,'expinfo');
+        save(BackUp_PostExpTrials,'PostExpTrials');
+        
+elseif expinfo.Cond == 1 && expinfo.doPractice == 0
         
         BackUp_PostExpTrials = [expinfo.DataFolder,expinfo.TaskName,'PostExp_Trials_S',num2str(expinfo.subject),'_Ses',num2str(expinfo.session)];
         BackUp_ExpInfo   = [expinfo.DataFolder,expinfo.TaskName,'_ExpInfo_S',num2str(expinfo.subject),'_Ses',num2str(expinfo.session)];
@@ -217,10 +228,11 @@ elseif expinfo.Cond == 1
         save(BackUp_ExpInfo,'expinfo');
         save(BackUp_PostExpTrials,'PostExpTrials');
         
-    end
-   % Another Condition for mixed Trials to be added. 
 end
-%% End Experiment
+   
+% Another Condition for mixed Trials to be added. 
+
+   %% End Experiment
 % Display one final slide telling the participant that the experiment is
 % finished.
 
