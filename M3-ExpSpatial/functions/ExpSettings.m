@@ -22,7 +22,7 @@ expinfo.RespWindow = 1:16;
 
 %Specify Trial Numbers
 expinfo.nPracTrials = 10;
-expinfo.nExpTrials = 50;
+expinfo.nExpTrials = 70;
 
 % Specify after how many trials in the experimental blocks there will be a break
 expinfo.Trials2Pause = floor(expinfo.nExpTrials*0.20);
@@ -197,7 +197,7 @@ expinfo.rect_center = [expinfo.center(1)-25 expinfo.center(2)-25 ...
 % Calculate Coordinates
 
 nCircles = expinfo.GridSize;  % how many equally spaced circles?
-MemoryRadius = expinfo.centerX/4; % radius, in Pixels
+MemoryRadius = expinfo.centerX/2; % radius, in Pixels
 
 % use polar coordinates to compute positions
 dAngle = 2*pi/nCircles; % change in angle per circle
