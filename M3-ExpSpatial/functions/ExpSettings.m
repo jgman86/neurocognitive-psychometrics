@@ -70,9 +70,9 @@ expinfo.StimColors.B = round(expinfo.StimColors{:,3} * 255);
 
 
 %% Secify number of general instruction slides
-if expinfo.Cond == 0 ||  expinfo.Cond == 1
+if expinfo.Cond == 0 || expinfo.Cond == 1
 
-    expinfo.InstStop = 7;
+    expinfo.InstStop = 8;
 
 elseif expinfo.Cond == 2
 
@@ -91,7 +91,7 @@ expinfo.CueInt = 1;
 expinfo.FixTime = 0.500; % Time of Fixation Cross
 expinfo.MaskTime = 0.300;
 expinfo.ArrayTime = 1.3; %300 std.
-expinfo.ArrayTime_fix = 0.3;
+expinfo.ArrayTime_fix = 0.100;
 expinfo.CueTime = 0.300; % 500 std.
 expinfo.FeedbackDuration = 2;
 expinfo.MaxRTSec = 1.2;
@@ -197,7 +197,7 @@ expinfo.rect_center = [expinfo.center(1)-25 expinfo.center(2)-25 ...
 % Calculate Coordinates
 
 nCircles = expinfo.GridSize;  % how many equally spaced circles?
-MemoryRadius = expinfo.centerX/2; % radius, in Pixels
+MemoryRadius = expinfo.centerX/2.5; % radius, in Pixels
 
 % use polar coordinates to compute positions
 dAngle = 2*pi/nCircles; % change in angle per circle
@@ -324,7 +324,7 @@ if expinfo.Cond == 0
         fprintf(fid, '%1$s %2$s %3$s %4$s %5$s %6$s %7$s %8$s %9$s %10$s %11$s %12$s %13$s %14$s %15$s %16$s %17$s %18$s %19$s %20$s %21$s %22$s %23$s %24$s %25$s %26$s %27$s %28$s %29$s %30$s %31$s %32$s %33$s %34$s %35$s %36$s %37$s %38$s %39$s %40$s %41$s %42$s %43$s %44$s %45$s %46$s\n', ...
             'Subject','TrialNum','SetSize','CueCondition', ...
             'Pos1_ACC','Pos2_ACC','Pos3_ACC','Pos4_ACC','Pos5_ACC',...
-            'Pos1_RT','Pos2_RT','Pos3_RT', 'Pos4_RT','Pos5_RT',...
+            'Pos1_RT','Pos2_RT','Pos3_RT','Pos4_RT','Pos5_RT',...
             'Chosen_IIP_Pos1','Chosen_IOP_Pos1', 'Chosen_DIP_Pos1', 'Chosen_DIOP_Pos1', 'Chosen_NPL_Pos1',...
             'Chosen_IIP_Pos2','Chosen_IOP_Pos2', 'Chosen_DIP_Pos2', 'Chosen_DIOP_Pos2', 'Chosen_NPL_Pos2',...
             'Chosen_IIP_Pos3','Chosen_IOP_Pos3', 'Chosen_DIP_Pos3', 'Chosen_DIOP_Pos3', 'Chosen_NPL_Pos3',...
