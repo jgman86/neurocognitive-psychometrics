@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+body {
+width:555px;
+padding:10px;
+margin:20px 300px; 
+}
+img { display: block;
+    margin-left: auto;
+    margin-right: auto }
+h1 {text-align:center;}
+#langlist {text-align:center;}
+#langlist li
+{
+display: inline;
+text-align:center;
+list-style-type: none;
+padding-right: 20px;
+}
+p {display: block;}
+</style>
+</head>
+<body>
+<div id="en">
+<h1>How To Implement A New Language In The WMCBattery</h1>
+<ul id="langlist">
+	<li><a href="#en">English</a></li>
+	<li><a href="#de">Deutsch</a></li>
+	<li>Francais</li>
+</ul>
+<h2>How To Add A New Language To The WMCBattery</h2>
+<p>Adding a new language to this "Working Memory Capacity Battery" is not too difficult, but associated with some effort. Take the time for some translation work.</p>
+
+<h3>Open the folder "LANGUAGES"</h3>
+<img src="HowToImages/chooseLang.png" alt="LANGUAGES folder location" />
+
+<h3>Copy one of the existing language folders</h3>
+<p>The "LANGUAGES" directory contains folders labelled according to all languages implemented so far. The original languages for the test battery are "English_Easy" and "English_Hard" as well as "Chinese". We suggest to translate these in order to avoid ongoing translation error propagation.</p>
+<img src="HowToImages/LANGUAGES.png" alt="single language folders" />
+<p>Copy the language folder(s) that fit most with your language and relabel it accordingly.</p>
+<p><strong>IMPORTANT!</strong>: Make sure not to translate <strong>"_Easy"</strong> and <strong>"_Hard"</strong> independently of the language you are implementing. It is important to name the folder(s) "<strong><em>YourLanguage</em>_Easy</strong>" or "<strong><em>YourLanguage</em>_Hard</strong>":</p>
+
+
+<h3>Translate the two Excel files</h3>
+<img src="HowToImages/excelfiles.png" alt="ExpMessages.xls and SS_Sentences.xls" />
+<p><strong>IMPORTANT!</strong>: Do not change the names of the Excel-files. Just translate their contents:</p>
+<img src="HowToImages/xls.png" alt="ExpMessages.xls and SS_Sentences.xls (open)" width="100%"/>
+
+<h3>Translate the Instructions</h3>
+<h4>Open the "Instructions" folder</h4>
+<img src="HowToImages/instructions.png" alt="WMCInstructions_onscreen.doc and WMCInstructions_SSeasy_onscreen.doc"  width="100%"/>
+<h4>Translate the instructions</h4>
+<p>Translate all text in the two .doc files (WMCInstructions_onscreen.doc and WMCInstructions_SSeasy_onscreen.doc). Instruction slides as displayed in the test battery are separated by page breaks.</p>
+<img src="HowToImages/doc.png" alt="WMCInstructions_onscreen.doc and WMCInstructions_SSeasy_onscreen.doc (open)" width="100%"/>
+<h4>Convert instruction slides to JPEG images</h4>
+<img src="HowToImages/excelfiles.png" alt="ExpMessages.xls and SS_Sentences.xls" />
+<p>Convert the single pages of the .doc files into .jpg. We recommend to take screenshots of the .doc pages and rescale them using an image editing program such as <a href="http://www.gimp.org/" target="_blank">GIMP (new tab)</a>.</p>
+<p><strong>IMPORTANT!</strong> Make sure that ...
+<ol><li>... you <strong>label</strong> the .jpg images in <strong>exactly the same way</strong> as they were labelled in the original language, and ...</li>
+	<li>... the <strong>image dimensions</strong> do not exceed the screen size of the displays you will run the WMCBattery with. We recommend a image dimensions between 750x500 and 1300x1000 pixels.</li>
+</ol>
+</p>
+
+<h3>You're DONE</h3>
+<p>Start the test battery (<STRONG>WCMBattery.m</STRONG>) and choose the newly added language.</p>
+<p><STRONG>Test it thoroughly!</strong></p>
+</div>
+<br>
+
+
+<div id="de">
+<h1>Wie Sie eine neue Sprachversion der WMCBatterie hinzufügen können</h1>
+<ul id="langlist">
+	<li><a href="#en">English</a></li>
+	<li><a href="#de">Deutsch</a></li>
+	<li>Francais</li>
+</ul>
+<h2>Wie Sie eine neue Sprache der WMCBatterie hinzufügen können</h2>
+<p>Dieser "Testbatterie für Arbeitsgedächtnisleistung" eine neue Sprachversion hinzuzufügen ist nicht sehr schwierig, geht aber durchaus mit einem gewissen Übersetzungsaufwand einher.</p>
+
+<h3>Öffnen Sie den Ordner "LANGUAGES"</h3>
+<img src="HowToImages/chooseLang.png" alt="LANGUAGES folder location" />
+
+<h3>Kopieren Sie einen bestehenden Sprachordner</h3>
+<p>Der Ordner "LANGUAGES" enthält Ordner, die entsprechend der bisher implementierten Sprachen beschriftet sind. Die ursprünglich implementierten Sprachen sind  English_Easy, English_Hard und Chinese. Um Fehler durch wiederholtes Übersetzen zu verhindern, empfehlen wir diese Sprachen als Grundlagen für weitere Übersetzungen zu verwenden.</p>
+<img src="HowToImages/LANGUAGES.png" alt="die einzelnen Sprachordner" />
+<p><strong>WICHTIG!</strong>: Übersetzen Sie nicht "<strong>_Easy</strong>" and "<strong>_Hard</strong>" der Ordnernamen, sprachunabhängig. Nennen Sie die neuen Ordner "<strong><em>IhreSprache</em>_Easy</strong>" oder "<strong><em>IhreSprache</em>_Hard</strong>":</p>
+
+
+
+<h3>Übersetzen Sie die beiden Excel Dateien</h3>
+<img src="HowToImages/excelfiles.png" alt="ExpMessages.xls and SS_Sentences.xls" />
+<p><strong>WICHTIG !</strong>: Belassen Sie Namen der Excel-Dateien unverändert. Übersetzen Sie ausschliesslich deren Inhalte/Einträge:</p>
+<img src="HowToImages/xls.png" alt="ExpMessages.xls and SS_Sentences.xls (open)" width="100%"/>
+
+<h3>Übersetzen Sie Instruktionen</h3>
+<h4>Öffnen Sie den Ordner "Instructions"</h4>
+<img src="HowToImages/instructions.png" alt="WMCInstructions_onscreen.doc und WMCInstructions_SSeasy_onscreen.doc"  width="100%"/>
+<h4>Übersetzen Sie die Instruktionen</h4>
+<p>Übersetzten Sie die beiden Dokumente WMCInstructions_onscreen.doc und WMCInstructions_SSeasy_onscreen.doc vollständig. Die Instruktionsseiten, wie Sie in der Testbatterie angezeigt werden, sind durch Seitenumbrüche voneinander getrennt.</p>
+<img src="HowToImages/doc.png" alt="WMCInstructions_onscreen.doc und WMCInstructions_SSeasy_onscreen.doc (open)" width="100%"/>
+<h4>Konvertieren Sie die Instruktionsseiten in JPEG Bilder</h4>
+<img src="HowToImages/excelfiles.png" alt="ExpMessages.xls und SS_Sentences.xls" />
+<p>Konvertieren Sie die einzelnen Seiten der .doc Dateien in .jpg. Wir empfehlen, dies mittels Screeshots und einer Bildbearbeitungssoftware, wie <a href="http://www.gimp.org/" target="_blank">GIMP (neue Tab)</a> zu tun.</p>
+<p><strong>WICHTIG !</strong> Vergewissern Sie sich, dass ...
+<ol><li>... Sie die .jpg-Bilder <strong>in exakt derselben Weise beschriften</strong> wie sie es in der ursprünglichen Version waren, und dass ... </li>
+	<li>... die <strong>Bildgrössen</strong> die Bildschirmgrössen Ihrer Testumgebung nicht überschreiten. Wir empfehlen Bildgrössen zwischen 750x500px und 1300x1000 Pixeln.</li>
+</ol>
+</p>
+
+<h3>FERTIG !</h3>
+<p>Sie können die Testbatterie nun starten (<STRONG>WMCBattery.m</STRONG>) und die neue Sprache auswählen.</p>
+<p><STRONG>Testen Sie die neue Version ausgiebig.</strong></p>
+</div>
+<br>
+
+</body>
+</html> 
