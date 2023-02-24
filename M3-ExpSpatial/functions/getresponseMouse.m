@@ -23,16 +23,20 @@ while response_mouse == 0  %&& toc < expinfo.MaxRTGrid
                 (cursorX >= expinfo.Coord(4,1) && cursorX <= expinfo.Coord(4,3) && cursorY >= expinfo.Coord(4,2) && cursorY <= expinfo.Coord(4,4)) || ...
                 (cursorX >= expinfo.Coord(5,1) && cursorX <= expinfo.Coord(5,3) && cursorY >= expinfo.Coord(5,2) && cursorY <= expinfo.Coord(5,4)) || ...
                 (cursorX >= expinfo.Coord(6,1) && cursorX <= expinfo.Coord(6,3) && cursorY >= expinfo.Coord(6,2) && cursorY <= expinfo.Coord(6,4)) || ...
-                (cursorX >= expinfo.Coord(7,1) && cursorX <= expinfo.Coord(7,3) && cursorY >= expinfo.Coord(7,2) && cursorY <= expinfo.Coord(7,4)) || ... 
-                (cursorX >= expinfo.Coord(8,1) && cursorX <= expinfo.Coord(8,3) && cursorY >= expinfo.Coord(8,2) && cursorY <= expinfo.Coord(8,4)) || ... 
-                (cursorX >= expinfo.Coord(9,1) && cursorX <= expinfo.Coord(9,3) && cursorY >= expinfo.Coord(9,2) && cursorY <= expinfo.Coord(9,4)) || ... 
-                (cursorX >= expinfo.Coord(10,1) && cursorX <= expinfo.Coord(10,3) && cursorY >= expinfo.Coord(10,2) && cursorY <= expinfo.Coord(10,4)) || ... 
-                (cursorX >= expinfo.Coord(11,1) && cursorX <= expinfo.Coord(11,3) && cursorY >= expinfo.Coord(11,2) && cursorY <= expinfo.Coord(11,4)) || ... 
-                (cursorX >= expinfo.Coord(12,1) && cursorX <= expinfo.Coord(12,3) && cursorY >= expinfo.Coord(12,2) && cursorY <= expinfo.Coord(12,4)) || ... 
-                (cursorX >= expinfo.Coord(13,1) && cursorX <= expinfo.Coord(13,3) && cursorY >= expinfo.Coord(13,2) && cursorY <= expinfo.Coord(13,4)) || ... 
-                (cursorX >= expinfo.Coord(14,1) && cursorX <= expinfo.Coord(14,3) && cursorY >= expinfo.Coord(14,2) && cursorY <= expinfo.Coord(14,4)) || ... 
-                (cursorX >= expinfo.Coord(15,1) && cursorX <= expinfo.Coord(15,3) && cursorY >= expinfo.Coord(15,2) && cursorY <= expinfo.Coord(15,4)) || ... 
-                (cursorX >= expinfo.Coord(16,1) && cursorX <= expinfo.Coord(16,3) && cursorY >= expinfo.Coord(16,2) && cursorY <= expinfo.Coord(16,4))
+                (cursorX >= expinfo.Coord(7,1) && cursorX <= expinfo.Coord(7,3) && cursorY >= expinfo.Coord(7,2) && cursorY <= expinfo.Coord(7,4)) || ...
+                (cursorX >= expinfo.Coord(8,1) && cursorX <= expinfo.Coord(8,3) && cursorY >= expinfo.Coord(8,2) && cursorY <= expinfo.Coord(8,4)) || ...
+                (cursorX >= expinfo.Coord(9,1) && cursorX <= expinfo.Coord(9,3) && cursorY >= expinfo.Coord(9,2) && cursorY <= expinfo.Coord(9,4)) || ...
+                (cursorX >= expinfo.Coord(10,1) && cursorX <= expinfo.Coord(10,3) && cursorY >= expinfo.Coord(10,2) && cursorY <= expinfo.Coord(10,4)) || ...
+                (cursorX >= expinfo.Coord(11,1) && cursorX <= expinfo.Coord(11,3) && cursorY >= expinfo.Coord(11,2) && cursorY <= expinfo.Coord(11,4)) || ...
+                (cursorX >= expinfo.Coord(12,1) && cursorX <= expinfo.Coord(12,3) && cursorY >= expinfo.Coord(12,2) && cursorY <= expinfo.Coord(12,4)) || ...
+                (cursorX >= expinfo.Coord(13,1) && cursorX <= expinfo.Coord(13,3) && cursorY >= expinfo.Coord(13,2) && cursorY <= expinfo.Coord(13,4)) || ...
+                (cursorX >= expinfo.Coord(14,1) && cursorX <= expinfo.Coord(14,3) && cursorY >= expinfo.Coord(14,2) && cursorY <= expinfo.Coord(14,4)) || ...
+                (cursorX >= expinfo.Coord(15,1) && cursorX <= expinfo.Coord(15,3) && cursorY >= expinfo.Coord(15,2) && cursorY <= expinfo.Coord(15,4)) || ...
+                (cursorX >= expinfo.Coord(16,1) && cursorX <= expinfo.Coord(16,3) && cursorY >= expinfo.Coord(16,2) && cursorY <= expinfo.Coord(16,4)) || ...
+                (cursorX >= expinfo.Coord(17,1) && cursorX <= expinfo.Coord(17,3) && cursorY >= expinfo.Coord(17,2) && cursorY <= expinfo.Coord(17,4)) || ...
+                (cursorX >= expinfo.Coord(18,1) && cursorX <= expinfo.Coord(18,3) && cursorY >= expinfo.Coord(18,2) && cursorY <= expinfo.Coord(18,4)) || ...
+                (cursorX >= expinfo.Coord(19,1) && cursorX <= expinfo.Coord(19,3) && cursorY >= expinfo.Coord(19,2) && cursorY <= expinfo.Coord(19,4)) || ...
+                (cursorX >= expinfo.Coord(20,1) && cursorX <= expinfo.Coord(20,3) && cursorY >= expinfo.Coord(20,2) && cursorY <= expinfo.Coord(20,4))
 
             timeSecs = GetSecs;
             response_mouse = 1;
@@ -48,38 +52,154 @@ if  RespButton(1) == 1 && response_mouse == 1 % Wenn eine erlaubte Taste gedr�
     
     RT = timeSecs - start; % Berechnung der Reaktionszeit
     
-    if  answerX >= expinfo.Coord(1,1) && answerY >= expinfo.Coord(1,2) && answerX <= expinfo.Coord(1,3)&& answerY <= expinfo.Coord(1,4)
+    if  answerX >= expinfo.Coord(1,1) && answerY >= expinfo.Coord(1,2) && answerX <= expinfo.Coord(1,3) && answerY <= expinfo.Coord(1,4)
         givenAnswer_mouse = 1;
-    elseif expinfo.Coord(2,1) && answerY >= expinfo.Coord(2,2) && answerX <= expinfo.Coord(2,3)&& answerY <= expinfo.Coord(2,4)
+
+        Screen('FrameRect', expinfo.window ,expinfo.Colors.white, [expinfo.Coord(1,1) expinfo.Coord(1,2) expinfo.Coord(1,3)  expinfo.Coord(1,4)],3);
+        Screen('Flip',expinfo.window,0,1);
+        WaitSecs(2);
+    
+    elseif answerX >= expinfo.Coord(2,1) && answerY >= expinfo.Coord(2,2) && answerX <= expinfo.Coord(2,3)&& answerY <= expinfo.Coord(2,4)
         givenAnswer_mouse = 2;
-    elseif expinfo.Coord(3,1) && answerY >= expinfo.Coord(3,2) && answerX <= expinfo.Coord(3,3)&& answerY <= expinfo.Coord(3,4)
+
+        Screen('FrameRect', expinfo.window ,expinfo.Colors.white, [expinfo.Coord(2,1) expinfo.Coord(2,2) expinfo.Coord(2,3)  expinfo.Coord(2,4)],3);
+        Screen('Flip',expinfo.window,0,1);
+        WaitSecs(2);
+
+    elseif answerX >= expinfo.Coord(3,1) && answerY >= expinfo.Coord(3,2) && answerX <= expinfo.Coord(3,3)&& answerY <= expinfo.Coord(3,4)
         givenAnswer_mouse = 3;
-    elseif expinfo.Coord(4,1) && answerY >= expinfo.Coord(4,2) && answerX <= expinfo.Coord(4,3)&& answerY <= expinfo.Coord(4,4)
+
+        Screen('FrameRect', expinfo.window ,expinfo.Colors.white, [expinfo.Coord(3,1) expinfo.Coord(3,2) expinfo.Coord(3,3)  expinfo.Coord(3,4)],3);
+        Screen('Flip',expinfo.window,0,1);
+        WaitSecs(2);
+
+    elseif answerX >= expinfo.Coord(4,1) && answerY >= expinfo.Coord(4,2) && answerX <= expinfo.Coord(4,3)&& answerY <= expinfo.Coord(4,4)
         givenAnswer_mouse = 4;
-    elseif expinfo.Coord(5,1) && answerY >= expinfo.Coord(5,2) && answerX <= expinfo.Coord(5,3)&& answerY <= expinfo.Coord(5,4)
+
+        Screen('FrameRect', expinfo.window ,expinfo.Colors.white, [expinfo.Coord(4,1) expinfo.Coord(4,2) expinfo.Coord(4,3)  expinfo.Coord(4,4)],3);
+        Screen('Flip',expinfo.window,0,1);
+        WaitSecs(2);
+
+    elseif answerX >= expinfo.Coord(5,1) && answerY >= expinfo.Coord(5,2) && answerX <= expinfo.Coord(5,3)&& answerY <= expinfo.Coord(5,4)
         givenAnswer_mouse = 5;
-    elseif expinfo.Coord(6,1) && answerY >= expinfo.Coord(6,2) && answerX <= expinfo.Coord(6,3)&& answerY <= expinfo.Coord(6,4)
+
+        Screen('FrameRect', expinfo.window ,expinfo.Colors.white, [expinfo.Coord(5,1) expinfo.Coord(5,2) expinfo.Coord(5,3) expinfo.Coord(5,4)],3);
+        Screen('Flip',expinfo.window,0,1);
+        WaitSecs(2);
+
+    elseif answerX >= expinfo.Coord(6,1) && answerY >= expinfo.Coord(6,2) && answerX <= expinfo.Coord(6,3)&& answerY <= expinfo.Coord(6,4)
         givenAnswer_mouse = 6;
-    elseif expinfo.Coord(7,1) && answerY >= expinfo.Coord(7,2) && answerX <= expinfo.Coord(7,3)&& answerY <= expinfo.Coord(7,4)
+        
+        Screen('FrameRect', expinfo.window ,expinfo.Colors.white, [expinfo.Coord(6,1) expinfo.Coord(6,2) expinfo.Coord(6,3) expinfo.Coord(6,4)],3);
+        Screen('Flip',expinfo.window,0,1);
+        WaitSecs(2);
+
+    elseif answerX >= expinfo.Coord(7,1) && answerY >= expinfo.Coord(7,2) && answerX <= expinfo.Coord(7,3)&& answerY <= expinfo.Coord(7,4)
         givenAnswer_mouse = 7;
-    elseif expinfo.Coord(8,1) && answerY >= expinfo.Coord(8,2) && answerX <= expinfo.Coord(8,3)&& answerY <= expinfo.Coord(8,4)
+
+        Screen('FrameRect', expinfo.window ,expinfo.Colors.white, [expinfo.Coord(7,1) expinfo.Coord(7,2) expinfo.Coord(7,3) expinfo.Coord(7,4)],3);
+        Screen('Flip',expinfo.window,0,1);
+        WaitSecs(2);
+
+    elseif answerX >= expinfo.Coord(8,1) && answerY >= expinfo.Coord(8,2) && answerX <= expinfo.Coord(8,3)&& answerY <= expinfo.Coord(8,4)
         givenAnswer_mouse = 8;
-    elseif expinfo.Coord(9,1) && answerY >= expinfo.Coord(9,2) && answerX <= expinfo.Coord(9,3)&& answerY <= expinfo.Coord(9,4)
+        
+        Screen('FrameRect', expinfo.window ,expinfo.Colors.white, [expinfo.Coord(8,1) expinfo.Coord(8,2) expinfo.Coord(8,3)  expinfo.Coord(8,4)],3);
+        Screen('Flip',expinfo.window,0,1);
+        WaitSecs(2);
+
+
+    elseif answerX >= expinfo.Coord(9,1) && answerY >= expinfo.Coord(9,2) && answerX <= expinfo.Coord(9,3)&& answerY <= expinfo.Coord(9,4)
         givenAnswer_mouse = 9;
-    elseif expinfo.Coord(10,1) && answerY >= expinfo.Coord(10,2) && answerX <= expinfo.Coord(10,3)&& answerY <= expinfo.Coord(10,4)
+
+        Screen('FrameRect', expinfo.window ,expinfo.Colors.white, [expinfo.Coord(9,1) expinfo.Coord(9,2) expinfo.Coord(9,3) expinfo.Coord(9,4)],3);
+        Screen('Flip',expinfo.window,0,1);
+        WaitSecs(2);
+
+
+    elseif answerX >= expinfo.Coord(10,1) && answerY >= expinfo.Coord(10,2) && answerX <= expinfo.Coord(10,3)&& answerY <= expinfo.Coord(10,4)
         givenAnswer_mouse = 10;
-    elseif expinfo.Coord(11,1) && answerY >= expinfo.Coord(11,2) && answerX <= expinfo.Coord(11,3)&& answerY <= expinfo.Coord(11,4)
+
+        Screen('FrameRect', expinfo.window ,expinfo.Colors.white, [expinfo.Coord(10,1) expinfo.Coord(10,2) expinfo.Coord(10,3) expinfo.Coord(10,4)],3);
+        Screen('Flip',expinfo.window,0,1);
+        WaitSecs(2);
+
+    elseif answerX >= expinfo.Coord(11,1) && answerY >= expinfo.Coord(11,2) && answerX <= expinfo.Coord(11,3)&& answerY <= expinfo.Coord(11,4)
         givenAnswer_mouse = 11;
-    elseif expinfo.Coord(12,1) && answerY >= expinfo.Coord(12,2) && answerX <= expinfo.Coord(12,3)&& answerY <= expinfo.Coord(12,4)
+
+        Screen('FrameRect', expinfo.window ,expinfo.Colors.white, [expinfo.Coord(11,1) expinfo.Coord(11,2) expinfo.Coord(11,3) expinfo.Coord(11,4)],3);
+        Screen('Flip',expinfo.window,0,1);
+        WaitSecs(2);
+
+
+
+    elseif answerX >= expinfo.Coord(12,1) && answerY >= expinfo.Coord(12,2) && answerX <= expinfo.Coord(12,3)&& answerY <= expinfo.Coord(12,4)
         givenAnswer_mouse = 12;
-    elseif expinfo.Coord(13,1) && answerY >= expinfo.Coord(13,2) && answerX <= expinfo.Coord(13,3)&& answerY <= expinfo.Coord(13,4)
+
+        Screen('FrameRect', expinfo.window ,expinfo.Colors.white, [expinfo.Coord(12,1) expinfo.Coord(12,2) expinfo.Coord(12,3) expinfo.Coord(12,4)],3);
+        Screen('Flip',expinfo.window,0,1);
+        WaitSecs(2);
+
+
+    elseif answerX >= expinfo.Coord(13,1) && answerY >= expinfo.Coord(13,2) && answerX <= expinfo.Coord(13,3)&& answerY <= expinfo.Coord(13,4)
         givenAnswer_mouse = 13;
-    elseif expinfo.Coord(14,1) && answerY >= expinfo.Coord(14,2) && answerX <= expinfo.Coord(14,3)&& answerY <= expinfo.Coord(14,4)
+
+        Screen('FrameRect', expinfo.window ,expinfo.Colors.white, [expinfo.Coord(13,1) expinfo.Coord(13,2) expinfo.Coord(13,3) expinfo.Coord(13,4)],3);
+        Screen('Flip',expinfo.window,0,1);
+        WaitSecs(2);
+
+    elseif answerX >= expinfo.Coord(14,1) && answerY >= expinfo.Coord(14,2) && answerX <= expinfo.Coord(14,3)&& answerY <= expinfo.Coord(14,4)
         givenAnswer_mouse = 14;
-    elseif expinfo.Coord(15,1) && answerY >= expinfo.Coord(15,2) && answerX <= expinfo.Coord(15,3)&& answerY <= expinfo.Coord(15,4)
+
+
+        Screen('FrameRect', expinfo.window ,expinfo.Colors.white, [expinfo.Coord(14,1) expinfo.Coord(14,2) expinfo.Coord(14,3) expinfo.Coord(14,4)],3);
+        Screen('Flip',expinfo.window,0,1);
+        WaitSecs(2);
+
+
+    elseif answerX >= expinfo.Coord(15,1) && answerY >= expinfo.Coord(15,2) && answerX <= expinfo.Coord(15,3)&& answerY <= expinfo.Coord(15,4)
         givenAnswer_mouse = 15;
-    elseif expinfo.Coord(16,1) && answerY >= expinfo.Coord(16,2) && answerX <= expinfo.Coord(16,3)&& answerY <= expinfo.Coord(16,4)
+
+        Screen('FrameRect', expinfo.window ,expinfo.Colors.white, [expinfo.Coord(15,1) expinfo.Coord(15,2) expinfo.Coord(15,3) expinfo.Coord(15,4)],3);
+        Screen('Flip',expinfo.window,0,1);
+        WaitSecs(2);
+
+    elseif answerX >= expinfo.Coord(16,1) && answerY >= expinfo.Coord(16,2) && answerX <= expinfo.Coord(16,3)&& answerY <= expinfo.Coord(16,4)
         givenAnswer_mouse = 16;
+
+        Screen('FrameRect', expinfo.window ,expinfo.Colors.white, [expinfo.Coord(16,1) expinfo.Coord(16,2) expinfo.Coord(16,3) expinfo.Coord(16,4)],3);
+        Screen('Flip',expinfo.window,0,1);
+        WaitSecs(2);
+
+    elseif answerX >= expinfo.Coord(17,1) && answerY >= expinfo.Coord(17,2) && answerX <= expinfo.Coord(17,3)&& answerY <= expinfo.Coord(17,4)
+        givenAnswer_mouse = 17;
+
+        Screen('FrameRect', expinfo.window ,expinfo.Colors.white, [expinfo.Coord(17,1) expinfo.Coord(17,2) expinfo.Coord(17,3) expinfo.Coord(17,4)],3);
+        Screen('Flip',expinfo.window,0,1);
+        WaitSecs(2);
+
+    elseif answerX >= expinfo.Coord(18,1) && answerY >= expinfo.Coord(18,2) && answerX <= expinfo.Coord(18,3)&& answerY <= expinfo.Coord(18,4)
+        givenAnswer_mouse = 18;
+
+        Screen('FrameRect', expinfo.window ,expinfo.Colors.white, [expinfo.Coord(18,1) expinfo.Coord(18,2) expinfo.Coord(18,3) expinfo.Coord(18,4)],3);
+        Screen('Flip',expinfo.window,0,1);
+        WaitSecs(2);
+
+    elseif answerX >= expinfo.Coord(19,1) && answerY >= expinfo.Coord(19,2) && answerX <= expinfo.Coord(19,3)&& answerY <= expinfo.Coord(19,4)
+        givenAnswer_mouse = 19;
+
+        Screen('FrameRect', expinfo.window ,expinfo.Colors.white, [expinfo.Coord(19,1) expinfo.Coord(19,2) expinfo.Coord(19,3) expinfo.Coord(19,4)],3);
+        Screen('Flip',expinfo.window,0,1);
+        WaitSecs(2);
+
+
+    elseif answerX >= expinfo.Coord(20,1) && answerY >= expinfo.Coord(20,2) && answerX <= expinfo.Coord(20,3)&& answerY <= expinfo.Coord(20,4)
+        givenAnswer_mouse = 20;
+
+        Screen('FrameRect', expinfo.window ,expinfo.Colors.white, [expinfo.Coord(20,1) expinfo.Coord(20,2) expinfo.Coord(20,3) expinfo.Coord(20,4)],3);
+        Screen('Flip',expinfo.window,0,1);
+        WaitSecs(2);
+
     end
     
     %% Track Answer Categories for IIP, IOP, DIP, DIOP and NPL

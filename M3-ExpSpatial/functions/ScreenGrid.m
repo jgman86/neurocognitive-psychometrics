@@ -14,8 +14,8 @@ end
 for i = 1:expinfo.SetSize
 
     
-   Screen('FillOval', expinfo.window,Trial(expTrial).MemColors(i,:),Trial(expTrial).IIPGridCoord(i,:))
-   Screen('FillOval', expinfo.window,Trial(expTrial).DistColors(i,:),Trial(expTrial).DIPGridCoord(i,:))
+   Screen('FillOval', expinfo.window,Trial(expTrial).MemColors{i,1:3},Trial(expTrial).IIPGridCoord(i,:))
+   Screen('FillOval', expinfo.window,Trial(expTrial).DistColors{i,1:3},Trial(expTrial).DIPGridCoord(i,:))
 
   
 end
@@ -24,13 +24,18 @@ end
 %% Screen NPLs
 for i = 1:expinfo.NPLs
 
-    Screen('FillOval', expinfo.window,Trial(expTrial).NPLColors(i,:),Trial(expTrial).NPLGridCoord(i,:))
+    Screen('FillOval', expinfo.window,Trial(expTrial).NPLColors{i,1:3},Trial(expTrial).NPLGridCoord(i,:))
 
 end
 
+%% Screen Fixation
+
+Screen('FillOval', expinfo.window,expinfo.Colors.black,expinfo.rect_bull);
+Screen('DrawLines', expinfo.window,expinfo.fix,10,expinfo.Colors.white,expinfo.center,0);
+Screen('FillOval', expinfo.window,expinfo.Colors.black,expinfo.bullseye);
 
 
-% Flip stimuli to screen
+%% Flip stimuli to screen
 
         if ~exist('when','var') || isempty(when)
            % Flip expinfo.expinfo.window immediately
@@ -38,7 +43,7 @@ end
             
         else
             % Flip synced to timestamp entered
-            timestamp_flip = Screen('Flip', expinfo.window,when);
+            timestamp_flip = Screen('Flip', expinfo.window,when,1);
         end
     
         

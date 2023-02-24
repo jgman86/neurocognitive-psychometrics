@@ -1,17 +1,16 @@
-% This function displays one trial of a Simon Task
+% This fun ction displays one trial of a Simon Task
 
 function Trial = DisplayTrial(expinfo, Trial, expTrial, isPractice)
 
 %% Start Trial Procedure and display all created trials in a loop!
-WaitSecs(2);
+ WaitSecs(2);
 
 %% Initialize Images and Positions
 
 % Show Fixation Cross %%
 
-Trial(expTrial).time_fixation = TextCenteredOnPos(expinfo.window,'+',expinfo.centerX,expinfo.centerY,expinfo.Colors.white);
+Trial(expTrial).time_fixation = ScreenFix(expinfo);
 next_flip = getAccurateFlip(expinfo.window,Trial(expTrial).time_fixation,expinfo.FixTime);
-
 
 
 %% next_flip muss immer noch übergeben werden. Funktion schreiben, für due cues...
@@ -32,15 +31,29 @@ for Pos_MemSet = 1:expinfo.SetSize
         next_flip = getAccurateFlip(expinfo.window,Trial(expTrial).CueMemInt,expinfo.CueMemInt);
  
         [expinfo, next_flip] = Screen_MemArray(expinfo, Pos_MemSet,Trial,expTrial, next_flip);
-    
-        % Screen Mask after MemArray
-        [expinfo, next_flip] =  ScreenMask(Trial,expinfo,expTrial, next_flip);
+
+        [Trial, givenAnswer_mouse_sec, response_mouse_sec] = getresponseMouse_secondary(expinfo, Trial, expTrial,Pos_MemSet);
+
+        % Now screen an new fixation cross in addition to the grid for a
+        % given time to gain time for eeg measurement
+        
+        [expinfo, next_flip] = Screen_MemArray_fix(expinfo, Pos_MemSet,Trial,expTrial,next_flip);
 
         % Freetime fix for Pre Trials
         Trial(expTrial).FT = clearScreen(expinfo.window,expinfo.Colors.bgColor, next_flip);
         next_flip = getAccurateFlip(expinfo.window,Trial(expTrial).FT,expinfo.FreeTime);
 
-     else
+        if isPractice == 1 % Show feedback in practice trials
+            if Trial(expTrial).ACC_secondary(Pos_MemSet) == 1
+                TextCenteredOnPos(expinfo.window,'RICHTIG',0.5*expinfo.maxX,0.5*expinfo.maxY,expinfo.Colors.white,next_flip);
+            else
+                TextCenteredOnPos(expinfo.window,'FALSCH',0.5*expinfo.maxX,0.5*expinfo.maxY,expinfo.Colors.white,next_flip);
+            end
+            WaitSecs(expinfo.FeedbackDuration);
+            clearScreen(expinfo.window,expinfo.Colors.bgColor);
+        end
+
+    else % post-cue trials
            
        % Clear Screen for ISI
         
@@ -49,18 +62,32 @@ for Pos_MemSet = 1:expinfo.SetSize
 
         [expinfo, next_flip] = Screen_MemArray(expinfo, Pos_MemSet,Trial,expTrial,next_flip);
 
+        [Trial, givenAnswer_mouse_sec, response_mouse_sec] = getresponseMouse_secondary(expinfo, Trial, expTrial,Pos_MemSet);
+        
+        [expinfo, next_flip] = Screen_MemArray_fix(expinfo, Pos_MemSet,Trial,expTrial,next_flip);
+
+        % Now screen an new fixation cross in addition to the grid for a
+        % given time to gain time for eeg measurement
+  
         % Cue-Array Interval
         Trial(expTrial).CueMemInt = clearScreen(expinfo.window,expinfo.Colors.bgColor, next_flip);
         next_flip = getAccurateFlip(expinfo.window,Trial(expTrial).CueMemInt,expinfo.CueMemInt);
 
         [expinfo, next_flip] =  ScreenCues(Trial,expinfo,expTrial,Pos_MemSet,next_flip);
 
-        % Screen Mask after MemArray
-        [expinfo, next_flip] =  ScreenMask(Trial,expinfo,expTrial, next_flip);
-
         % Freetime fix for Pre Trials
         Trial(expTrial).FT = clearScreen(expinfo.window,expinfo.Colors.bgColor, next_flip);
         next_flip = getAccurateFlip(expinfo.window,Trial(expTrial).FT,Trial(expTrial).FreeTime);
+
+        if isPractice == 1 % Show feedback in practice trials
+            if Trial(expTrial).ACC_secondary(Pos_MemSet) == 1
+                TextCenteredOnPos(expinfo.window,'RICHTIG',0.5*expinfo.maxX,0.5*expinfo.maxY,expinfo.Colors.white,next_flip);
+            else
+                TextCenteredOnPos(expinfo.window,'FALSCH',0.5*expinfo.maxX,0.5*expinfo.maxY,expinfo.Colors.white,next_flip);
+            end
+            WaitSecs(expinfo.FeedbackDuration);
+            clearScreen(expinfo.window,expinfo.Colors.bgColor);
+        end
 
 
     end
@@ -76,8 +103,8 @@ next_flip = getAccurateFlip(expinfo.window,Trial(expTrial).RetCue,expinfo.FixTim
 Trial(expTrial).RetCue_Fix = clearScreen(expinfo.window,expinfo.Colors.bgColor, next_flip);
 next_flip = getAccurateFlip(expinfo.window,Trial(expTrial).RetCue_Fix,expinfo.CueInt);
 
-Trial(expTrial).FixGrid = TextCenteredOnPos(expinfo.window,'+',expinfo.centerX,expinfo.centerY,expinfo.Colors.white,next_flip);
-next_flip = getAccurateFlip(expinfo.window,Trial(expTrial).FixGrid,expinfo.FixTime);
+Trial(expTrial).time_fixation = ScreenFix(expinfo);
+next_flip = getAccurateFlip(expinfo.window,Trial(expTrial).time_fixation,expinfo.FixTime);
 
 Trial(expTrial).Fix2Grid = clearScreen(expinfo.window,expinfo.Colors.bgColor, next_flip);
 next_flip = getAccurateFlip(expinfo.window,Trial(expTrial).Fix2Grid,0);
@@ -89,13 +116,15 @@ for Pos = 1:expinfo.SetSize
     [expinfo, next_flip] = ScreenGrid(expinfo, Trial, expTrial, next_flip);
 
     [Trial, givenAnswer_mouse, response_mouse] = getresponseMouse(expinfo, Trial, expTrial, Pos);
-  
+    
 
     if isPractice == 1 % Show feedback in practice trials
         if Trial(expTrial).ACC(Pos) == 1
-            TextCenteredOnPos(expinfo.window,'RICHTIG',0.5*expinfo.maxX,0.5*expinfo.maxY,expinfo.Colors.green,next_flip);
+            clearScreen(expinfo.window,expinfo.Colors.bgColor);
+            TextCenteredOnPos(expinfo.window,'RICHTIG',0.5*expinfo.maxX,0.5*expinfo.maxY,expinfo.Colors.white,next_flip);
         else
-            TextCenteredOnPos(expinfo.window,'FALSCH',0.5*expinfo.maxX,0.5*expinfo.maxY,expinfo.Colors.red,next_flip);
+            clearScreen(expinfo.window,expinfo.Colors.bgColor);
+            TextCenteredOnPos(expinfo.window,'FALSCH',0.5*expinfo.maxX,0.5*expinfo.maxY,expinfo.Colors.white,next_flip);
         end
         WaitSecs(expinfo.FeedbackDuration);
     end

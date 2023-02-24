@@ -1,0 +1,8 @@
+SubjectNr. Name FirstName  Age   Sex Occupation Handedness  Contact
+1 Wiebel Clara 21 w Psychologie rechts cwiebel@students.uni-mainz.de
+1 Patt Joana 20 w Psychologie & Psychotherapie Rechtshänder jpatt@students.uni-mainz.de
+2 Rustenbeck Irene 24 w Psychologie rechts irustenb@students.uni-mainz.de
+3 Tussing  Helena 20 w Psychologie & Psychotherapie Rechtshänder htussing@students.uni-mainz.de 
+4 Rosentreter Laura 24 w Psychologie Rechts larosent@students.uni-mainz.de
+5 Klapdoh Alina 20 w Psychologie & Psychotherapie rechts aklapdoh@students.uni-mainz.de
+6 Tegel Sari 25 w Psychologie Rechtshänder stegel01@students.uni-mainz.de

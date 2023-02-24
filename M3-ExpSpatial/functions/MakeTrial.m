@@ -486,7 +486,7 @@ for trial = 1:expinfo.nExpTrials
     % Sample Color Space for individual Trial
 
     ColorSpaceIndex = randsample(expinfo.ColorIndex,expinfo.GridSize);
-    ColorSpaceTrial = expinfo.StimColors(ColorSpaceIndex,:);
+    ColorSpaceTrial = expinfo.StimColors(ColorSpaceIndex,1:4);
 
     PreTrial(trial).ColorSpaceTrial = ColorSpaceTrial;
 
@@ -554,13 +554,30 @@ for trial = 1:expinfo.nExpTrials
 
     clear ColorIndexTrial
 
+    %% Secondary Testing Answer Pre Trial
+
+
+    for i = 1:expinfo.SetSize
+
+        if PreTrial(trial).MemColors{i,4} > PreTrial(trial).DistColors{i,4}
+            
+            PreTrial(trial).BrightColor(i) = "Mem";
+
+        elseif  PreTrial(trial).MemColors{i,4} < PreTrial(trial).DistColors{i,4}
+            
+            PreTrial(trial).BrightColor(i) = "Dist";
+
+        end
+    end
+
+
     %% Post Cue Trials
     % Sample Two Colors per position
 
     % Sample Color Space for individual Trial
 
     ColorSpaceIndex_Post = randsample(expinfo.ColorIndex,expinfo.GridSize,false);
-    ColorSpaceTrial_Post = expinfo.StimColors(ColorSpaceIndex_Post,:);
+    ColorSpaceTrial_Post = expinfo.StimColors(ColorSpaceIndex_Post,1:4);
 
     ColorIndexTrial_Post = 1:expinfo.GridSize;
 
@@ -630,6 +647,22 @@ for trial = 1:expinfo.nExpTrials
 
 
    clear ColorIndexTrial_Post
+
+     %% Secondary Testing Answer Post Trial
+
+
+    for i = 1:expinfo.SetSize
+
+        if PostTrial(trial).MemColors{i,4} > PostTrial(trial).DistColors{i,4}
+            
+            PostTrial(trial).BrightColor(i) = "Mem";
+
+        elseif  PostTrial(trial).MemColors{i,4} < PostTrial(trial).DistColors{i,4}
+            
+            PostTrial(trial).BrightColor(i) = "Dist";
+
+        end
+    end
 
     %% Assign Grid Coordinates
 
