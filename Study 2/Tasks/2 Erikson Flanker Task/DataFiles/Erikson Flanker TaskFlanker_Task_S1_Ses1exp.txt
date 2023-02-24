@@ -1,5 +1,0 @@
-  1 1 1   1     ExpFlanker 1   congruent 1 right 1 right 0.522 0.423 1.302 1 0.618 l l 
-  1 1 1   2     ExpFlanker 2 incongruent 2  left 1 right 0.446 0.466 1.083 1 0.333 d d 
-  1 1 1   3     ExpFlanker 1   congruent 1 right 1 right 0.453 0.423 1.111 -3 3.000 wrongKey l 
-  1 1 1   4     ExpFlanker 2 incongruent 1 right 2  left 0.522 0.451 1.191 -2 3.000 miss l 
-  1 1 1   1     ExpFlanker 1   congruent 1 right 1 right 0.522 0.423 1.302 -3 3.000 wrongKey l 

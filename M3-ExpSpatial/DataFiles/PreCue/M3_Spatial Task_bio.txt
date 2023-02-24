@@ -1,3 +1,0 @@
-SubjectNr. Name FirstName  Age   Sex Occupation Handedness  Contact
-1 Jan Göttmann 32 m psch r 
-1 judith reichert 34 w päd e 
