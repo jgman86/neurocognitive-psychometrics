@@ -2,12 +2,19 @@
 
 function expinfo = ExpSettings(expinfo)
 %% Some general info about the experiment
-if expinfo.TrialType == 1 % add Stimuli Type
+if expinfo.TrialType == 1 && expinfo.StimType == "Words"
 
     expinfo.TaskName = 'M3_Verbal_PreCue';
 
-else
+elseif expinfo.TrialType == 1 && expinfo.StimType == "Numbers"
+    expinfo.TaskName = 'M3_Numerical_PreCue';
+
+elseif expinfo.TrialType == 2 && expinfo.StimType == "Words"
     expinfo.TaskName = 'M3_Verbal_PostCue';
+
+elseif expinfo.TrialType == 2 && expinfo.StimType == "Numbers"
+    expinfo.TaskName = 'M3_Numerical_PostCue';
+
 
 end
 %% Get Date an time for this session
