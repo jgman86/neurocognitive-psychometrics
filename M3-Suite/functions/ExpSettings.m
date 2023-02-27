@@ -7,9 +7,11 @@ if expinfo.TrialType == 1 && expinfo.StimType == "Words"
     expinfo.TaskName = 'M3_Verbal_PreCue';
 
 elseif expinfo.TrialType == 1 && expinfo.StimType == "Numbers"
+
     expinfo.TaskName = 'M3_Numerical_PreCue';
 
 elseif expinfo.TrialType == 2 && expinfo.StimType == "Words"
+
     expinfo.TaskName = 'M3_Verbal_PostCue';
 
 elseif expinfo.TrialType == 2 && expinfo.StimType == "Numbers"
@@ -30,21 +32,21 @@ expinfo.Time = expinfo.Time{1};
 
 
 %% Specify Folder Paths
-if expinfo.TrialType == 1 && expinfo.language == 1
+if expinfo.TrialType == 1 && expinfo.StimType == "Words"
 
-    expinfo.InstFolder  = 'Instructions\German\PreCue\'; % adjust inst folder for different cue and stimtype conditions
+    expinfo.InstFolder  = 'Instructions\German\PreCueVerbal\'; % adjust inst folder for different cue and stimtype conditions
 
-elseif expinfo.TrialType == 2 && expinfo.language == 1
+elseif expinfo.TrialType == 2 && expinfo.StimType == "Words"
 
-    expinfo.InstFolder      = 'Instructions\German\PostCue\';
+    expinfo.InstFolder      = 'Instructions\German\PostCueVerbal\';
 
-elseif    expinfo.TrialType == 1 && expinfo.language == 2
+elseif    expinfo.TrialType == 1 && expinfo.StimType == "Numbers"
 
-    expinfo.InstFolder      = 'Instructions\German\PreCue\'; % adjust inst folder for different cue and stimtype conditions
+    expinfo.InstFolder      = 'Instructions\German\PreCueNumerical\'; % adjust inst folder for different cue and stimtype conditions
 
-elseif expinfo.TrialType == 2 && expinfo.language == 2
+elseif expinfo.TrialType == 2 && expinfo.StimType == "Numbers"
 
-    expinfo.InstFolder      = 'Instructions\German\PostCue\';
+    expinfo.InstFolder      = 'Instructions\German\PostCueNumerical\';
 end
 
 expinfo.StimFolder      = 'Stimuli/';
@@ -250,8 +252,7 @@ expinfo.bFile = [expinfo.DataFolder expinfo.TaskName, bFile]; %extension for bio
 % easy further analysis with R etc.
 
 fid = fopen(expinfo.expFile,'w');
-fprintf(fid, ['%1$s %2$s %3$s %4$s %5$s %6$s %7$s %8$s %9$s %10$s %11$s %12$s %13$s %14$s %15$s %16$s %17$s %18$s %19$s %20$s %21$s %22$s %23$s %24$s %25$s %26$s %27$s %28$s %29$s %30$s %31$s %32$s %33$s %34$s' ...
-    '%35$s %36$s %37$s %38$s %39$s %40$s %41$s %42$s %43$s %44$s %45$s %46$s %47$s %48$s %49$s\n'], ...
+fprintf(fid, ' %1$s %2$s %3$s %4$s %5$s %6$s %7$s %8$s %9$s %10$s %11$s %12$s %13$s %14$s %15$s %16$s %17$s %18$s %19$s %20$s %21$s %22$s %23$s %24$s %25$s %26$s %27$s %28$s %29$s %30$s %31$s %32$s %33$s %34$s %35$s %36$s %37$s %38$s %39$s %40$s %41$s %42$s %43$s %44$s %45$s %46$s %47$s %48$s %49$s\n', ...
     'Subject','TrialNum','CueCondition','SetSize','FT', ...
     'n_DIP_total','n_DIP_Pos1','n_DIP_Pos2', ...
     'n_DIP_Pos3','n_DIP_Pos4','n_DIP_Pos5', ...
@@ -272,8 +273,7 @@ fclose(fid);
 
 if expinfo.doPractice == 1
     fid = fopen(expinfo.pracFile,'w');
-    fprintf(fid, ['%1$s %2$s %3$s %4$s %5$s %6$s %7$s %8$s %9$s %10$s %11$s %12$s %13$s %14$s %15$s %16$s %17$s %18$s %19$s %20$s %21$s %22$s %23$s %24$s %25$s %26$s %27$s %28$s %29$s %30$s %31$s %32$s %33$s %34$s' ...
-        '%35$s %36$s %37$s %38$s %39$s %40$s %41$s %42$s %43$s %44$s %45$s %46$s %47$s %48$s %49$s\n'], ...
+    fprintf(fid, '%1$s %2$s %3$s %4$s %5$s %6$s %7$s %8$s %9$s %10$s %11$s %12$s %13$s %14$s %15$s %16$s %17$s %18$s %19$s %20$s %21$s %22$s %23$s %24$s %25$s %26$s %27$s %28$s %29$s %30$s %31$s %32$s %33$s %34$s %35$s %36$s %37$s %38$s %39$s %40$s %41$s %42$s %43$s %44$s %45$s %46$s %47$s %48$s %49$s\n', ...
         'Subject','TrialNum','CueCondition','SetSize','FT', ...
         'n_DIP_total','n_DIP_Pos1','n_DIP_Pos2', ...
         'n_DIP_Pos3','n_DIP_Pos4','n_DIP_Pos5', ...

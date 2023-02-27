@@ -229,7 +229,7 @@ if  RespButton(1) == 1 && response_mouse == 1 % Wenn eine erlaubte Taste gedr�
     % DIP
     
     
-    DIP = Trial(expTrial).DIP_Pos(Pos);
+    DIP = Trial(expTrial).DIP_Pos(Pos,:);
     
     if ismember(givenAnswer_mouse,DIP)
         DIP = 1;
@@ -294,6 +294,7 @@ Trial(expTrial).ChosenNPLs(Pos) = NPLs;
 Trial(expTrial).Misses(Pos) = Misses;
 
 if Pos == expinfo.SetSize
+    
     Trial(expTrial).SumACC = sum(Trial(expTrial).ACC)/(expinfo.SetSize);
     Trial(expTrial).SumIIP = sum(Trial(expTrial).ChosenIIP);
     Trial(expTrial).SumIOP = sum(Trial(expTrial).ChosenIOP);

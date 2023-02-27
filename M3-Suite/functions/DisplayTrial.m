@@ -267,6 +267,7 @@ for i = 1:expinfo.SetSize*2
     fprintf(fid, '%1.4f ',Trial(expTrial).RT_SecTask(i));
 end
 
+% Overall Accuracy Secondary Task
 fprintf(fid, '%d ', Trial(expTrial).SumACCSecTask);
 
 
