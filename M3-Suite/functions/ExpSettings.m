@@ -32,6 +32,7 @@ expinfo.Time = expinfo.Time{1};
 
 
 %% Specify Folder Paths
+% For Instructions
 if expinfo.TrialType == 1 && expinfo.StimType == "Words"
 
     expinfo.InstFolder  = 'Instructions\German\PreCueVerbal\'; % adjust inst folder for different cue and stimtype conditions
@@ -49,10 +50,30 @@ elseif expinfo.TrialType == 2 && expinfo.StimType == "Numbers"
     expinfo.InstFolder      = 'Instructions\German\PostCueNumerical\';
 end
 
+% For Outputfiles
+
+if expinfo.TrialType == 1 && expinfo.StimType == "Words"
+
+    expinfo.DataFolder  = 'DataFiles/PreCueVerbal/'; % adjust inst folder for different cue and stimtype conditions
+
+elseif expinfo.TrialType == 2 && expinfo.StimType == "Words"
+
+    expinfo.DataFolder      = 'DataFiles/PostCueVerbal/';
+
+elseif    expinfo.TrialType == 1 && expinfo.StimType == "Numbers"
+
+    expinfo.DataFolder      = 'DataFiles/PreCueNumerical/'; % adjust inst folder for different cue and stimtype conditions
+
+elseif expinfo.TrialType == 2 && expinfo.StimType == "Numbers"
+
+    expinfo.DataFolder      = 'DataFiles/PostCueNumerical/';
+end
+
+
+
+% For Stims 
 expinfo.StimFolder      = 'Stimuli/';
 expinfo.InstExtension   = '.JPG';
-expinfo.DataFolder      = 'DataFiles/';
-
 %% Initiate Input Output settings for Markers
 expinfo.ioObj = io64;
 expinfo.IOstatus = io64(expinfo.ioObj);
@@ -84,11 +105,11 @@ expinfo.InstStop = 14;
 expinfo.Fixtime = 1; % Dauer des Fixationskreuzes zu Beginn eines Trials
 
 % Cue Word Intervall - fix presented
-expinfo.Cue_Word = 0.750;
+expinfo.Cue_Word = 0.500;
 % Cue presentation time
 expinfo.cue_time = 0.200;
 % Initial Time to Encode the Word
-expinfo.EncTime = 0.200;
+expinfo.EncTime = 0.500;
 
 expinfo.ISI = 0.250; % Minimale Dauer des Inter-Stimulus-Intervalls (ISI)
 %expinfo.ISI_jitter = 0.100; % ISI Jitter = Intervall in dem das ISI variieren darf
@@ -104,7 +125,7 @@ expinfo.ITI = 1; % Minimale Dauer des Inter-Trial-Intervalls (ITI)
 %expinfo.ITI_jitter = 0.2; %ITI Jitter
 
 % Feedback for Practice Trials
-expinfo.FeedbackDuration = 1;
+expinfo.FeedbackDuration = 0.5;
 expinfo.FeedbackFix = 1;
 
 %% Experimental Manipulations
@@ -241,7 +262,7 @@ expinfo.Fonts.textFont  = expinfo.Fonts.sansSerifFont;
 %% datafiles and messages
 pracFile = '_prac.txt'; % extension for the practice trial data
 expFile  = '_exp.txt';  % extension fot the experimental trial data
-bFile = '_bio.txt'; % biographical information
+bFile = '_bio.csv'; % biographical information
 
 % Adjusting the file-names to a different name for each subject
 expinfo.pracFile = [expinfo.DataFolder,expinfo.TaskName,'_S',num2str(expinfo.subject),'_Ses',num2str(expinfo.session),pracFile];
@@ -297,9 +318,13 @@ end
 
 
 % Write Bio file if non existant
+%Create Header
+header = {'SubjectNr.','Name','FirstName','Age','Sex','Occupation','Handedness','conscientiousness','Contact'};
+textHeader = strjoin(header, ',');
+
 if exist(expinfo.bFile,'file') == 0
     fid = fopen(expinfo.bFile,'w');
-    fprintf(fid, '%1s %2s %3s %4s %5s %6s %7s %8s\n','SubjectNr.','Name','FirstName','Age','Sex','Occupation','Handedness','Contact');
+    fprintf(fid,'%s\n',textHeader);
     fclose(fid);
 end
 
