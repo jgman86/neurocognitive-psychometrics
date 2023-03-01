@@ -120,8 +120,9 @@ expinfo.CueCondition = {'pre';'post'};
 expinfo.StimClass = {'M','D'};
 expinfo.RetroStimClass = [0 1];
 expinfo.CueCondFactor = 1:length(expinfo.CueCondition);
-expinfo.BlockOrd = randsample(expinfo.CueCondition, length(expinfo.CueCondFactor), 1);
 
+% Maximum consecutive occurrences of Mem/ Distractor Items
+expinfo.max_consec = 3;
 
 % Marker Identification for EEG
 expinfo.StimClassCond = 1:length(expinfo.StimClass);
@@ -180,7 +181,6 @@ Coords(:,1) = CoordsX;
 Coords(:,2) = CoordsY;
 
 
-
 %% Rect Coordinates for Circles (and Response fields)
 
 for i = 1:expinfo.GridSize
@@ -188,9 +188,6 @@ for i = 1:expinfo.GridSize
     expinfo.Coord(i,:)=[Coords(i,1)  Coords(i,2) ...
         Coords(i,1) Coords(i,2)];
 end
-
-
-
 
 
 %% Colors and Fonts for Text & Stimuli
