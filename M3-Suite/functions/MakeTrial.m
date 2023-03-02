@@ -130,7 +130,7 @@ for trial = 1:expinfo.nTrials
 
     elseif expinfo.StimType == "Numbers"
 
-        Trial(trial).Stims = randsample(Numbers,expinfo.SetSize*2,false);
+        Trial(trial).Stims = randsample(Numbers,expinfo.SetSize*2);
         Trial(trial).NPLs = randsample(Numbers,expinfo.NPLs);
 
 
@@ -260,7 +260,7 @@ for trial = 1:expinfo.nTrials
 
     %% DIP Categories for every Position. Either a DIP for one or two postions.
 
-    Trial(trial).n_DIP_Pos =repelem(0,expinfo.SetSize*2);
+    Trial(trial).n_DIP_Pos =repelem(0,expinfo.SetSize*2); % check for data format (vector)
 
 
     for i=1:expinfo.SetSize*2
@@ -361,7 +361,7 @@ for trial = 1:expinfo.nTrials
     %% Define DIP Vectors Indices for every Position
 
 
-    DIP = zeros(5,3);
+    DIP = zeros(expinfo.SetSize,3);
 
     for i = 1:expinfo.SetSize*2
 
