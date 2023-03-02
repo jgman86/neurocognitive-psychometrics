@@ -47,9 +47,9 @@ Words = table2cell(readtable(expinfo.stimfile));
 letter_count = num2cell(cellfun(@length, Words));
 
 Words = [Words, letter_count(:,2)];
-Words = Words([Words{:,4}]>5, :);
+Words = Words([Words{:,4}]>8, :);
 
-Words = Words([Words{:,4}]<=10, :);
+Words = Words([Words{:,4}]<=12, :);
 
 % Number Space without 50
 
@@ -130,11 +130,11 @@ for trial = 1:expinfo.nTrials
 
     elseif expinfo.StimType == "Numbers"
 
-        Trial(trial).Stims = randsample(Numbers,10,false);
+        Trial(trial).Stims = randsample(Numbers,expinfo.SetSize*2,false);
         Trial(trial).NPLs = randsample(Numbers,expinfo.NPLs);
 
 
-        while any(ismember(Trial(1).Stims, Trial(1).NPLs))
+        while any(ismember(Trial(trial).Stims, Trial(trial).NPLs))
 
             NPLs = randsample(Numbers, expinfo.NPLs);
             Trial(trial).NPLs = NPLs;
@@ -260,7 +260,7 @@ for trial = 1:expinfo.nTrials
 
     %% DIP Categories for every Position. Either a DIP for one or two postions.
 
-    Trial(trial).n_DIP_Pos =[0 0 0 0 0 0 0 0 0 0];
+    Trial(trial).n_DIP_Pos =repelem(0,expinfo.SetSize*2);
 
 
     for i=1:expinfo.SetSize*2
@@ -459,7 +459,7 @@ for trial = 1:expinfo.nTrials
 
     %% Define DIOP Vectors Indices for every Position
 
-    Pos_IndexDIOP_Pos = zeros(5,5);
+    Pos_IndexDIOP_Pos = zeros(expinfo.SetSize,expinfo.SetSize);
 
 
     for j = 1:expinfo.SetSize*2

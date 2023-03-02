@@ -109,7 +109,7 @@ expinfo.Cue_Word = 0.500;
 % Cue presentation time
 expinfo.cue_time = 0.200;
 % Initial Time to Encode the Word
-expinfo.EncTime = 0.600;
+expinfo.EncTime = 0.500;
 
 expinfo.ISI = 0.250; % Minimale Dauer des Inter-Stimulus-Intervalls (ISI)
 %expinfo.ISI_jitter = 0.100; % ISI Jitter = Intervall in dem das ISI variieren darf
@@ -119,7 +119,7 @@ expinfo.ISI_Ret = 0.5; % Minimale Dauer des Inter-Stimulus-Intervalls im Retriev
 
 % MaxRTs for Tasks
 expinfo.MaxRTGrid = 10; % Maximal erlaubte Reaktionszeit bei Memory Recall pro Position
-expinfo.MaxRTSec = 1.2; % Maximal erlaubte Reaktionszeit bei Größenentscheidung
+expinfo.MaxRTSec = 1; % Maximal erlaubte Reaktionszeit bei Größenentscheidung
 
 expinfo.ITI = 1; % Minimale Dauer des Inter-Trial-Intervalls (ITI)
 %expinfo.ITI_jitter = 0.2; %ITI Jitter
@@ -159,11 +159,11 @@ expinfo.AbortKey = 'F12';
 % x und y Koordinaten der Bilder bei der Abfrage festlegen. 4 x 4 Grid. 1-16 von unten links nach rechts, von unten nach oben
 
 if expinfo.StimType == "Words"
-    expinfo.lengthText = 85;
-    expinfo.widthText = 20;
+    expinfo.lengthText = 95;
+    expinfo.widthText = 25;
 else
-    expinfo.lengthText = 20;
-    expinfo.widthText = 20;
+    expinfo.lengthText = 25;
+    expinfo.widthText = 25;
 end
 
 
@@ -182,7 +182,7 @@ expinfo.left = [expinfo.maxX *0.25 expinfo.maxY * 0.5];
 nCircles = expinfo.GridSize;  % how many equally spaced circles?
 
 if expinfo.StimType == "Words"
-    MemoryRadius = expinfo.centerX/1.7; % radius, in Pixels
+    MemoryRadius = expinfo.centerX/1.8; % radius, in Pixels
 
 else
 
@@ -269,28 +269,64 @@ expinfo.bFile = [expinfo.DataFolder expinfo.TaskName, bFile]; %extension for bio
 % Prepare Files for task and biographical informations including variable names for
 % easy further analysis with R etc.
 
-% Create File Headers
-Grid_ACC = sprintfc('Grid_ACC_Pos%d ', 1:expinfo.SetSize);
-Grid_RT = sprintfc('Grid_RT_Pos%d ', 1:expinfo.SetSize);
-SecTask_ACC = sprintfc('SecTask_ACC_Pos%d ', 1:expinfo.SetSize*2);
-SecTask_RT = sprintfc('SecTask_RT_Pos%d ', 1:expinfo.SetSize*2);
-n_DIP_Pos = sprintfc('n_DIP_Pos%d ', 1:expinfo.SetSize);
+% implement automatic file header according to actual set size 
+% stringVector = sprintfc('Grid_ACC_Pos%d', 1:5)
 
-header=string(['Subject ','TrialNum ','CueCondition ','SetSize ','FT ','n_DIP_total ',n_DIP_Pos,Grid_ACC,Grid_RT,'SumACC_Grid ',SecTask_ACC,SecTask_RT,...
-    'SumACC_SecTask ','IIP ','IOP ','DIP ','DIOP ','NPLs ','Misses ']);
+Grid_ACC = sprintfc('Grid_ACC_Pos%d', 1:expinfo.SetSize);
+Grid_RT = sprintfc('Grid_RT_Pos%d', 1:expinfo.SetSize);
+SecTask_ACC = sprintfc('SecTask_ACC_Pos%d', 1:expinfo.SetSize*2);
+SecTask_RT = sprintfc('SecTask_RT_Pos%d', 1:expinfo.SetSize*2);
+n_DIP_Pos = sprintfc('n_DIP_Pos%d', 1:expinfo.SetSize);
 
-% Write Blank Datafiles
+
+header=string(['Subject','TrialNum','CueCondition','SetSize','FT','n_DIP_total',n_DIP_Pos,Grid_ACC,Grid_RT,'SumACC_Grid',SecTask_ACC,SecTask_RT,...
+    'SumACC_SecTask','IIP','IOP','DIP','DIOP','NPLs','Misses'])
+
 
 fid = fopen(expinfo.expFile,'w');
-fprintf(fid, '%s', header);
+fprintf(fid, ' %1$s %2$s %3$s %4$s %5$s %6$s %7$s %8$s %9$s %10$s %11$s %12$s %13$s %14$s %15$s %16$s %17$s %18$s %19$s %20$s %21$s %22$s %23$s %24$s %25$s %26$s %27$s %28$s %29$s %30$s %31$s %32$s %33$s %34$s %35$s %36$s %37$s %38$s %39$s %40$s %41$s %42$s %43$s %44$s %45$s %46$s %47$s %48$s %49$s\n', ...
+    'Subject','TrialNum','CueCondition','SetSize','FT', ...
+    'n_DIP_total','n_DIP_Pos1','n_DIP_Pos2', ...
+    'n_DIP_Pos3','n_DIP_Pos4','n_DIP_Pos5', ...
+    'Grid_Pos1_ACC','Grid_Pos2_ACC','Grid_Pos3_ACC', ...
+    'Grid_Pos4_ACC','Grid_Pos5_ACC', ...
+    'Grid_Pos1_RT','Grid_Pos2_RT','Grid_Pos3_RT', ...
+    'Grid_Pos4_RT','Grid_Pos5_RT','SumACC_Grid',...
+    'Pos1_ACC_SecTask','Pos2_ACC_SecTask','Pos3_ACC_SecTask',...
+    'Pos4_ACC_SecTask','Pos5_ACC_SecTask','Pos6_ACC_SecTask',...
+    'Pos7_ACC_SecTask','Pos8_ACC_SecTask','Pos9_ACC_SecTask',...
+    'Pos10_ACC_SecTask',...
+    'Pos1_RT_SecTask','Pos2_RT_SecTask','Pos3_RT_SecTask',...
+    'Pos4_RT_SecTask','Pos5_RT_SecTask','Pos6_RT_SecTask', ...
+    'Pos7_RT_SecTask','Pos8_RT_SecTask','Pos9_RT_SecTask',...
+    'Pos10_RT_SecTask','SumACC_SecTask',...
+    'IIP','IOP','DIP','DIOP','NPLs','Misses');
 fclose(fid);
 
 if expinfo.doPractice == 1
     fid = fopen(expinfo.pracFile,'w');
-    fprintf(fid, '%s', header);
+    fprintf(fid, '%1$s %2$s %3$s %4$s %5$s %6$s %7$s %8$s %9$s %10$s %11$s %12$s %13$s %14$s %15$s %16$s %17$s %18$s %19$s %20$s %21$s %22$s %23$s %24$s %25$s %26$s %27$s %28$s %29$s %30$s %31$s %32$s %33$s %34$s %35$s %36$s %37$s %38$s %39$s %40$s %41$s %42$s %43$s %44$s %45$s %46$s %47$s %48$s %49$s\n', ...
+        'Subject','TrialNum','CueCondition','SetSize','FT', ...
+        'n_DIP_total','n_DIP_Pos1','n_DIP_Pos2', ...
+        'n_DIP_Pos3','n_DIP_Pos4','n_DIP_Pos5', ...
+        'Grid_Pos1_ACC','Grid_Pos2_ACC','Grid_Pos3_ACC', ...
+        'Grid_Pos4_ACC','Grid_Pos5_ACC', ...
+        'Grid_Pos1_RT','Grid_Pos2_RT','Grid_Pos3_RT', ...
+        'Grid_Pos4_RT','Grid_Pos5_RT','SumACC_Grid',...
+        'Pos1_ACC_SecTask','Pos2_ACC_SecTask','Pos3_ACC_SecTask',...
+        'Pos4_ACC_SecTask','Pos5_ACC_SecTask','Pos6_ACC_SecTask',...
+        'Pos7_ACC_SecTask','Pos8_ACC_SecTask','Pos9_ACC_SecTask',...
+        'Pos10_ACC_SecTask',...
+        'Pos1_RT_SecTask','Pos2_RT_SecTask','Pos3_RT_SecTask',...
+        'Pos4_RT_SecTask','Pos5_RT_SecTask','Pos6_RT_SecTask', ...
+        'Pos7_RT_SecTask','Pos8_RT_SecTask','Pos9_RT_SecTask',...
+        'Pos10_RT_SecTask','SumACC_SecTask',...
+        'IIP','IOP','DIP','DIOP','NPLs','Misses');
     fclose(fid);
 
 end
+
+
 
 % Write Bio file if non existant
 %Create Header
