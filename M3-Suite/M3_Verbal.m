@@ -4,18 +4,20 @@ clearvars; % Start the experiment with empty workspace
 clc; % Clear command window
 
 %% Gather Subject ID and some options for the experiment %%
-prompt = {'Enter Subject Number:','Enter Session Number:','Start with Practice Trials?',"Stimtype",'Trial Type','Choose Language (1 = German, 2 = English):','Short Experiment?:'};
-title = 'Cued Complex Span Task';
-dims = [1 50];
-answer = inputdlg(prompt,title,dims);
-expinfo.subject = str2double(answer{1}); % SubjectID
-expinfo.session = str2double(answer{2}); % Session
-expinfo.doPractice = str2double(answer{3}); % Practice Trials needed?
-expinfo.StimType = answer{4}; % Select StimType
-expinfo.TrialType = str2double(answer{5}); % Pre, Post, Mixed
-expinfo.language =str2double(answer{6});  % Select language
-expinfo.isShort=str2double(answer{7}); % Run a short version of the experiment for debugging and testing
+% prompt = {'Enter Subject Number:','Enter Session Number:','Start with Practice Trials?',"Stimtype",'Trial Type','Choose Language (1 = German, 2 = English):','Short Experiment?:'};
+% title = 'Cued Complex Span Task';
+% dims = [1 50];
+% answer = inputdlg(prompt,title,dims);
+% expinfo.subject = str2double(answer{1}); % SubjectID
+% expinfo.session = str2double(answer{2}); % Session
+% expinfo.doPractice = str2double(answer{3}); % Practice Trials needed?
+% expinfo.StimType = answer{4}; % Select StimType
+% expinfo.TrialType = str2double(answer{5}); % Pre, Post, Mixed
+% expinfo.language =str2double(answer{6});  % Select language
+% expinfo.isShort=str2double(answer{7}); % Run a short version of the experiment for debugging and testing
 
+
+waitfor(app1); 
 
 %% Open PTB window and load general settings %%
 % Add folders for functions, instructions and Data Files to the Matlab

@@ -132,7 +132,7 @@ expinfo.FeedbackFix = 1;
 
 expinfo.GridSize =20;
 expinfo.RespWindow = 1:expinfo.GridSize;
-expinfo.SetSize = 6;
+%expinfo.SetSize = 6;
 expinfo.FT = [0.300;0.600];
 expinfo.FT_pre = 0.200;
 expinfo.NPLs = expinfo.GridSize-expinfo.SetSize*2;
