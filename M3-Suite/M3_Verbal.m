@@ -3,15 +3,16 @@
 clearvars; % Start the experiment with empty workspace
 clc; % Clear command window
 
+% Add folders for functions, instructions and Data Files to the Matlab
+% workspace
+addpath('functions', 'Instructions', 'DataFiles','Images');
+
 %% Set Experimental Properties and create expinfo
 
 
 waitfor(StartUp); 
 
 %% Open PTB window and load general settings %%
-% Add folders for functions, instructions and Data Files to the Matlab
-% workspace
-addpath('functions', 'Instructions', 'DataFiles');
 
 % Setting a seed for randomization ensures that you can reproduce
 % randomized variables for each subject and session id.
