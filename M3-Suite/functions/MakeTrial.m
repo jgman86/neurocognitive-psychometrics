@@ -52,15 +52,35 @@ Words = Words([Words{:,4}]>8, :);
 Words = Words([Words{:,4}]<=12, :);
 
 % Number Space without 50
-
 Numbers = (10:99);
 Numbers = setdiff(Numbers,50);
 
 
 %% Determine additional Information for each Trial
+%% insert balancing for FT conditions
+setsize = expinfo.SetSize;
+npls = expinfo.NPLs;
 
+nfiller_trials = ceil(expinfo.nTrials*0.20);
+filler_trials = randsample(1:expinfo.nTrials,nfiller_trials);
 
-for trial = 1:expinfo.nTrials
+for trial = 1:expinfo.nTrials+nfiller_trials % ensure 
+
+ % Include Filler Trials for discouraging subjects to anticipate remaining
+ % number of items
+
+if any(ismember(trial,filler_trials))
+
+    mat_setsize = setdiff([3:8],expinfo.SetSize)
+
+    setsize = randsample(mat_setsize,1);
+    npls = expinfo.GridSize-setsize*2;
+
+else 
+
+    setsize = expinfo.SetSize;
+    npls = expinfo.GridSize-setsize*2;
+end 
 
     % Speichern der TrialNummer
     Trial(trial).TrialNum = trial;
@@ -108,21 +128,37 @@ for trial = 1:expinfo.nTrials
 
     end
 
+    % Save SetSize to Object
+
+    Trial(trial).SetSize = setsize;
+    
+    % Filler Trials yes or no 
+
+    if any(ismember(trial,filler_trials))
+
+        Trial(trial).FillerTrial = 1;
+    else
+
+         Trial(trial).FillerTrial = 0;
+
+    end 
+
+
     %% Sample Words Correct Size from Stimfile
 
     if expinfo.StimType == "Words"
 
-        Stims = randsample(1:length(Words), expinfo.SetSize*2);
+        Stims = randsample(1:length(Words), setsize*2);
         Trial(trial).Stims = Words(Stims,2);
 
-        NPLs = randsample(1:length(Words), expinfo.NPLs);
+        NPLs = randsample(1:length(Words), npls);
         Trial(trial).NPLs = Words(NPLs,2);
 
         % Ensure that there are no double Words within a trial TRIAL BEFORE TOO - IMPLEMENT
 
         while any(ismember(Trial(trial).Stims, Trial(trial).NPLs))
 
-            NPLs = randsample(1:length(Words), expinfo.NPLs);
+            NPLs = randsample(1:length(Words), npls);
             Trial(trial).NPLs = Words(NPLs,2);
 
         end
@@ -130,13 +166,13 @@ for trial = 1:expinfo.nTrials
 
     elseif expinfo.StimType == "Numbers"
 
-        Trial(trial).Stims = randsample(Numbers,expinfo.SetSize*2);
-        Trial(trial).NPLs = randsample(Numbers,expinfo.NPLs);
+        Trial(trial).Stims = randsample(Numbers,setsize*2);
+        Trial(trial).NPLs = randsample(Numbers,npls);
 
 
         while any(ismember(Trial(trial).Stims, Trial(trial).NPLs))
 
-            NPLs = randsample(Numbers, expinfo.NPLs);
+            NPLs = randsample(Numbers, npls);
             Trial(trial).NPLs = NPLs;
 
         end
@@ -147,8 +183,8 @@ for trial = 1:expinfo.nTrials
     %% Order of Mem and Distractor Items
 
     % Ensure there are always n/2 Mem and Distractors
-    numMem = expinfo.SetSize;
-    numDist = expinfo.SetSize;
+    numMem = setsize;
+    numDist = setsize;
 
 
     StimOrder = [ones(1, numMem), zeros(1, numDist)]; % Start with n/2 1's and n/2 0's
@@ -170,7 +206,7 @@ for trial = 1:expinfo.nTrials
 
     %% Assign sampled Stims to Categories Mems or Lures
 
-    for i=1:expinfo.SetSize*2
+    for i=1:setsize*2
 
         if Trial(trial).StimOrder(i) == 1
 
@@ -245,7 +281,9 @@ for trial = 1:expinfo.nTrials
 
     % For IOP of every Position
 
-    for j = 1:expinfo.SetSize
+    IOP_Pos_Index=zeros(setsize,setsize-1);
+
+    for j = 1:setsize
 
         Pos_IndexIOP = find(Trial(trial).StimOrder);
 
@@ -260,12 +298,12 @@ for trial = 1:expinfo.nTrials
 
     %% DIP Categories for every Position. Either a DIP for one or two postions.
 
-    Trial(trial).n_DIP_Pos =repelem(0,expinfo.SetSize*2); % check for data format (vector)
+    Trial(trial).n_DIP_Pos =repelem(0,setsize*2); % check for data format (vector)
 
 
-    for i=1:expinfo.SetSize*2
+    for i=1:setsize*2
 
-        if i < expinfo.SetSize*2 && i > 1
+        if i < setsize*2 && i > 1
 
             if Trial(trial).StimOrder(i) == 0 && Trial(trial).StimOrder(i-1) == 1 && Trial(trial).StimOrder(i+1) == 0
 
@@ -300,7 +338,7 @@ for trial = 1:expinfo.nTrials
             end
 
         else
-            if i == expinfo.SetSize*2
+            if i == setsize*2
 
                 if Trial(trial).StimOrder(i) == 0 && Trial(trial).StimOrder(i-1) == 1
 
@@ -361,11 +399,11 @@ for trial = 1:expinfo.nTrials
     %% Define DIP Vectors Indices for every Position
 
 
-    DIP = zeros(expinfo.SetSize,3);
+    DIP = zeros(setsize,3);
 
-    for i = 1:expinfo.SetSize*2
+    for i = 1:setsize*2
 
-        if i > 1 && i < expinfo.SetSize*2
+        if i > 1 && i < setsize*2
 
             if Trial(trial).StimOrder(i) == 1
 
@@ -425,7 +463,7 @@ for trial = 1:expinfo.nTrials
 
             end
 
-        elseif i == expinfo.SetSize*2
+        elseif i == setsize*2
 
             if Trial(trial).StimOrder(i) == 1 && Trial(trial).StimOrder(i-1) == 0
 
@@ -459,11 +497,11 @@ for trial = 1:expinfo.nTrials
 
     %% Define DIOP Vectors Indices for every Position
 
-    Pos_IndexDIOP_Pos = zeros(expinfo.SetSize,expinfo.SetSize);
+    Pos_IndexDIOP_Pos = zeros(setsize,setsize);
 
 
-    for j = 1:expinfo.SetSize*2
-        if j < expinfo.SetSize*2 && j > 1
+    for j = 1:setsize*2
+        if j < setsize*2 && j > 1
 
             if Trial(trial).Pos_IndexDIP(j) == "Mem" && Trial(trial).Pos_IndexDIP(j-1) == "Mem" ...
                     && Trial(trial).Pos_IndexDIP(j+1) == "Mem"
@@ -526,7 +564,7 @@ for trial = 1:expinfo.nTrials
                     Pos_IndexDIOP_Pos(j,1:length(DIOPs)) = DIOPs;
                 end
 
-            elseif j == expinfo.SetSize*2
+            elseif j == setsize*2
 
                 if Trial(trial).Pos_IndexDIP(j) == "Mem" && Trial(trial).Pos_IndexDIP(j-1) == "Mem"
 
@@ -557,7 +595,7 @@ for trial = 1:expinfo.nTrials
 
 
 
-    Trial(trial).GridPos = Trial(trial).ResponsePositions(1:expinfo.SetSize*2);
+    Trial(trial).GridPos = Trial(trial).ResponsePositions(1:setsize*2);
 
 
     % Coordinates for all Stimuli
@@ -582,13 +620,13 @@ for trial = 1:expinfo.nTrials
 
     %% Calculate Trial Timing according to defined jitter for each Trial
 
-    %    for i = 1:expinfo.SetSize
+    %    for i = 1:setsize
     %
     %       Trial(trial).ISI_Ret_jittered(i) = expinfo.ISI_Ret + (expinfo.ISI_Ret_jitter * rand(1));
     %
     %    end
     %
-    %    for i = 1:expinfo.SetSize*2
+    %    for i = 1:setsize*2
     %
     %        Trial(trial).FixTime_jittered(i) = expinfo.Fixtime + (expinfo.Fix_jitter * rand(1));
     % %        Trial(trial).Fix_Cue_jittered(i) = expinfo.Fix_Cue + (expinfo.fix_cue_jitter * rand(1));
@@ -596,7 +634,7 @@ for trial = 1:expinfo.nTrials
     %
     %    end
     %
-    %    for i = 1:expinfo.SetSize*2 + 1
+    %    for i = 1:setsize*2 + 1
     %
     %        Trial(trial).ISI_jittered(i) = expinfo.ISI + (expinfo.ISI_jitter * rand(1));
     %
