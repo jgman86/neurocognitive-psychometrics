@@ -75,11 +75,15 @@ end
 expinfo.StimFolder      = 'Stimuli/';
 expinfo.InstExtension   = '.JPG';
 %% Initiate Input Output settings for Markers
-expinfo.ioObj = io64;
-expinfo.IOstatus = io64(expinfo.ioObj);
-expinfo.PortAddress = hex2dec('3EFC');
-io64(expinfo.ioObj, expinfo.PortAddress, 0); % Stop Writing to Output Port
 
+if expinfo.EEGExp == 1
+
+    expinfo.ioObj = io64;
+    expinfo.IOstatus = io64(expinfo.ioObj);
+    expinfo.PortAddress = hex2dec('3EFC');
+    io64(expinfo.ioObj, expinfo.PortAddress, 0); % Stop Writing to Output Port
+
+end 
 
 %% Specify Stimulus and Text properties (Size, Position, etc.)
 expinfo.stimulussize = 80; % in Pixel bzw. Point
